@@ -5,11 +5,43 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1.0, width=device-width">
   <title>Люблю ___</title>
-  <link rel="stylesheet" href="style.css" type="text/css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/fonts.css">
 </head>
 
 <body>
-  <h1>Hello world</h1>
+  <div class="page-wrapper">
+    <header class="page-header"></header>
+
+    <div class="content-wrapper">
+      <main class="recommendations">
+        <header class="rec-header">
+          <span class="rec-header__title">Люблю</span>
+          <ul class="rec-header__swiper">
+            <li class="rec-header__item rec-header__item__far">Английские слова</li>
+            <li class="rec-header__item rec-header__item__near">Страны</li>
+            <li class="rec-header__item rec-header__item__current">Фильмы</li>
+            <li class="rec-header__item rec-header__item__near">Книги</li>
+            <li class="rec-header__item rec-header__item__far">Интересные факты</li>
+          </ul>
+        </header>
+        <div class="recommendations__subscription">
+          <p>Я люблю хорошее кино. В своем профиле на Кинопоиске я поставил оценки уже 646 фильмам и не собираюсь останавливаться.</p>
+          <p>В этом блоге я отмечаю фильмы, которые мне особо понравились, и высказываю мнение о них.</p>
+        </div>
+      </main>
+      <aside class="details">
+        <div class="common-info"></div>
+        <div class="my-opinion"></div>
+      </aside>
+    </div>
+
+    <footer class="page-footer">
+      <div class="page-footer__name">Альберт Абдульманов, 2018</div>
+    </footer>
+  </div>
+
 
   <script type="text/javascript" src="app.js"></script>
 </body>

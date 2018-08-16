@@ -13,8 +13,8 @@ $ npm start
 
 Prototype №1
 
-![Prototype №1](images/prototype_1.png)
+![Prototype №1](src/images/prototype_1.png)
 
 Prototype №2
 
-![Prototype №2](images/prototype_2.png)
+![Prototype №2](src/images/prototype_2.png)
