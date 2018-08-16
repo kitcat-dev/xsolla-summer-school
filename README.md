@@ -1,5 +1,5 @@
-# xsollaSummerSchool
+# What I Like?
 
-Прототип №1
+Prototype №1
 
-![Прототип №1](images/prototype_1.png)
+![Prototype №1](images/prototype_1.png)
