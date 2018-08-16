@@ -1,5 +1,5 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     mode: "development",
@@ -9,8 +9,11 @@ module.exports = {
         filename: "app.js"
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.pug'
+        new MiniCssExtractPlugin({
+          // Options similar to the same options in webpackOptions.output
+          // both options are optional
+          filename: "[name].css",
+          chunkFilename: "[id].css"
         })
     ],
     module: {
@@ -23,14 +26,29 @@ module.exports = {
                 }
             },
             {
-                test: /\.(pug)$/, 
-                loader: 'pug-loader',
-                options: {
-                    pretty: true
+                test: /\.html$/,
+                use: {
+                  loader: 'html-loader',
+                  options: {
+                    attrs: [':data-src']
+                  }
                 }
             },
             {
-                test: /\.(png|jpg|gif)$/i,
+                test: /\.css$/,
+                use: [
+                    {
+                      loader: MiniCssExtractPlugin.loader,
+                      options: {
+                        publicPath: '../'
+                      }
+                    },
+                    "css-loader",
+                    "to-string-loader"
+                  ]
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
                 use: [
                   {
                     loader: 'url-loader',
