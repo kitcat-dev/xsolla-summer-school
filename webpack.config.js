@@ -8,14 +8,6 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: "app.js"
     },
-    plugins: [
-        new MiniCssExtractPlugin({
-          // Options similar to the same options in webpackOptions.output
-          // both options are optional
-          filename: "[name].css",
-          chunkFilename: "[id].css"
-        })
-    ],
     module: {
         rules: [
             {
@@ -68,5 +60,13 @@ module.exports = {
                 ]
               }
         ]
-    }
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: "[name].css",
+        chunkFilename: "[id].css"
+      })
+  ],
 };
