@@ -52,7 +52,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    let url = "https://xsolla-ss-favourite-films.herokuapp.com:3001/api_posts";
+    let url = "/api_posts";
     fetch(url)
       .then(resp => resp.json())
       .then(data => {
