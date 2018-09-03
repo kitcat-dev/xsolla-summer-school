@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const Home = () => (
   <div>
@@ -47,24 +47,22 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      posts: [],
     };
   }
 
   componentDidMount() {
-    let url = "https://xsolla-ss-films-api.herokuapp.com/posts";
+    const url = 'https://xsolla-ss-films-api.herokuapp.com/posts';
     fetch(url)
       .then(resp => resp.json())
       .then(data => {
-        let posts = data.map(post => {
-          return (
-            <div key={post.id}>
-              <h3>{post.title}</h3>
-              <p>{post.content}</p>
-            </div>
-          );
-        });
-        this.setState({ posts: posts });
+        const posts = data.map(post => (
+          <div key={post.id}>
+            <h3>{post.title}</h3>
+            <p>{post.content}</p>
+          </div>
+        ));
+        this.setState({ posts });
       });
   }
 
