@@ -50,7 +50,7 @@ class App extends React.Component {
         <div>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Домой</Link>
             </li>
             <li>
               <Link to="/about">About</Link>
