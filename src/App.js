@@ -44,6 +44,30 @@ const Topics = ({ match }) => (
 );
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: []
+    };
+  }
+
+  componentDidMount() {
+    let url = "https://xsolla-ss-favourite-films.herokuapp.com:3001/api_posts";
+    fetch(url)
+      .then(resp => resp.json())
+      .then(data => {
+        let posts = data.map(post => {
+          return (
+            <div key={post.id}>
+              <h3>{post.title}</h3>
+              <p>Author: {post.authorId}</p>
+            </div>
+          );
+        });
+        this.setState({ posts: posts });
+      });
+  }
+
   render() {
     return (
       <Router>
@@ -51,6 +75,7 @@ class App extends React.Component {
           <ul>
             <li>
               <Link to="/">Домой</Link>
+              <p />
             </li>
             <li>
               <Link to="/about">About</Link>
@@ -59,6 +84,8 @@ class App extends React.Component {
               <Link to="/topics">Topics</Link>
             </li>
           </ul>
+
+          {this.state.posts}
 
           <hr />
 
