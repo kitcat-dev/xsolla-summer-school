@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./FilmsList.css";
+
 export default class FilmsList extends React.Component {
   constructor(props) {
     super(props);
@@ -15,8 +17,8 @@ export default class FilmsList extends React.Component {
       .then(data => {
         const films = data.map(film => (
           <div key={film.id}>
-            <h3>{film.name}</h3>
-            <p>{film.desctiption.ru}</p>
+            <h3>{film.name.ru}</h3>
+            <p>{film.description.ru}</p>
           </div>
         ));
         this.setState({ films });
