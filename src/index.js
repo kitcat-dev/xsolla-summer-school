@@ -1,10 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-const Index = () => {
-  return <div>Hello React!</div>;
-};
+import App from './App';
+import './normalize.css';
+import './index.css';
 
-console.log("src/index.js launched");
-
-ReactDOM.render(<Index />, document.getElementById("root"));
+ReactDOM.render(
+  React.createElement(BrowserRouter, null, React.createElement(App, null)),
+  document.getElementById('root')
+);

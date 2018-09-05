@@ -1,0 +1,101 @@
+$duration: 0.3s;
+$uncheckedColor: linear-gradient(to top, rgba(255,47,10,1) 0%, rgba(12,59,245,1) 50%, rgba(255,255,255,1) 100%);;
+$checkedColor: linear-gradient(to right bottom, rgba(60,60,112,1) 0%, rgba(214,17,23,1) 100%);
+$bgColor: #fff;
+$borderColor: #ccc;
+
+.rc-switch {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 80px;
+  height: 30px;
+  line-height: 28px;
+  vertical-align: middle;
+  border-radius: 20px 20px;
+  border: 1px solid $borderColor;
+  background: $bgColor;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+
+  /* text */
+  &-inner {
+      color: $borderColor;
+      font-size: 14px;
+      position: absolute;
+      left: 45px;
+      transition: left 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+  }
+
+  &:after {
+      position: absolute;
+        width: 30px;
+        height: 30px;
+        left: -1px;
+        top: -1px;
+        border-radius: 50% 50%;
+        background: $uncheckedColor;
+        content: " ";
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+        transform: scale(1);
+        transition: left 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+        animation-timing-function: cubic-bezier(0.35, 0, 0.25, 1);
+        animation-duration: $duration;
+        animation-name: rcSwitchOff;
+  }
+
+  &:hover:after {
+      transform: scale(1.1);
+      animation-name: rcSwitchOn;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px #d5f1fd;
+    outline: none;
+  }
+
+  &-checked {
+    border: 1px solid $borderColor;
+
+    .rc-switch-inner {
+        left: 10px;
+    }
+
+    &:after {
+        left: 50px;
+        background: $checkedColor;
+    }
+  }
+
+  &-label {
+      display: inline-block;
+    line-height: 28px;
+    font-size: 14px;
+    padding-left: 10px;
+    vertical-align: middle;
+    white-space: normal;
+    pointer-events: none;
+    user-select: text;
+  }
+}
+
+@keyframes rcSwitchOn {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+@keyframes rcSwitchOff {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

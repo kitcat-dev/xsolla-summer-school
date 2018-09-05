@@ -1,96 +1,121 @@
-"use strict";
+'use strict';
 
 module.exports = function(env, argv) {
-  const path = require("path");
-  const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-  const HtmlWebpackPlugin = require("html-webpack-plugin");
-  const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-  const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+  const path = require('path');
+  const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+  const HtmlWebpackPlugin = require('html-webpack-plugin');
+  const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+  const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-  const isProduction = argv.mode === "production";
-  const isDevelopment = argv.mode === "development";
+  const isProduction = argv.mode === 'production';
+  const isDevelopment = argv.mode === 'development';
 
-  const commonCssLoaders = ["css-loader", "postcss-loader"];
+  const commonCssLoaders = ['css-loader', 'postcss-loader'];
 
-  const componentCssLoaders = ["to-string-loader"].concat(commonCssLoaders);
+  const componentCssLoaders = ['to-string-loader'].concat(commonCssLoaders);
 
   if (isProduction) {
-    componentCssLoaders.push("clean-css-loader");
+    componentCssLoaders.push('clean-css-loader');
   }
 
   const mainCssLoaders = [MiniCssExtractPlugin.loader].concat(commonCssLoaders);
 
-  const mainCssPath = path.resolve(__dirname, "src/index.css");
+  const mainCssPath = path.resolve(__dirname, 'src/index.css');
 
   let config = {
     mode: argv.mode,
     entry: {
-      app: "./src/index.js"
+      app: './src/index.js',
     },
     output: {
-      path: path.resolve(__dirname, "dist"),
-      publicPath: "/",
-      filename: "bundle.js"
+      path: path.resolve(__dirname, 'dist'),
+      publicPath: '/',
+      filename: 'bundle.js',
+    },
+    resolve: {
+      extensions: ['*', '.js', '.jsx'],
     },
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          loader: "babel-loader"
+          use: ['babel-loader'],
         },
         {
           test: /\.html$/,
           use: {
-            loader: "html-loader",
+            loader: 'html-loader',
             options: {
               minimize: isProduction,
               removeComments: true,
               collapseWhitespace: true,
               conservativeCollapse: false,
-              collapseInlineTagWhitespace: true
-            }
-          }
+              collapseInlineTagWhitespace: true,
+            },
+          },
+        },
+        {
+          test: /\.css$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'style-loader',
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+              },
+            },
+            {
+              loader: 'postcss-loader',
+            },
+          ],
         },
         {
           test: /\.css$/,
           exclude: mainCssPath,
-          use: componentCssLoaders
+          use: componentCssLoaders,
         },
         {
           test: mainCssPath,
-          use: mainCssLoaders
+          use: mainCssLoaders,
         },
         {
           test: /\.(jpe?g|png|gif|svg)$/,
           use: {
-            loader: "url-loader",
+            loader: 'url-loader',
             options: {
               limit: 100000,
-              name: isProduction ? "[name].[contenthash].[ext]" : "[name].[ext]"
-            }
-          }
+              name: isProduction
+                ? '[name].[contenthash].[ext]'
+                : '[name].[ext]',
+            },
+          },
         },
         {
           test: /\.(eot|ttf|otf|woff|woff2)$/,
           use: {
-            loader: "url-loader",
+            loader: 'url-loader',
             options: {
               limit: 65000,
-              name: isProduction ? "[name].[contenthash].[ext]" : "[name].[ext]"
-            }
-          }
-        }
-      ]
+              name: isProduction
+                ? '[name].[contenthash].[ext]'
+                : '[name].[ext]',
+            },
+          },
+        },
+      ],
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: "src/index.html"
+        template: 'src/index.html',
       }),
       new MiniCssExtractPlugin({
-        filename: isProduction ? "./[name].[contenthash].css" : "./[name].css"
-      })
-    ]
+        filename: isProduction ? './[name].[contenthash].css' : './[name].css',
+      }),
+    ],
   };
 
   if (isProduction) {
@@ -99,19 +124,19 @@ module.exports = function(env, argv) {
         new UglifyJsPlugin({
           cache: true,
           parallel: true,
-          sourceMap: false
+          sourceMap: false,
         }),
-        new OptimizeCSSAssetsPlugin()
-      ]
+        new OptimizeCSSAssetsPlugin(),
+      ],
     };
   }
 
   if (isDevelopment) {
     config.watch = true;
-    config.devtool = "eval";
+    config.devtool = 'eval';
     config.devServer = {
-      contentBase: path.join(__dirname, "dist"),
-      port: 4000
+      contentBase: path.join(__dirname, 'dist'),
+      port: 4000,
     };
   }
 
