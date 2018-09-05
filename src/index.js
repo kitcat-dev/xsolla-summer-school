@@ -1,14 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import registerServiceWorker from "./registerServiceWorker";
 
-import App from "./App/";
-import "./normalize.css";
-import "./index.css";
+const Index = () => {
+  return <div>Hello React!</div>;
+};
 
-ReactDOM.render(
-  React.createElement(BrowserRouter, null, React.createElement(App, null)),
-  document.getElementById("root")
-);
-registerServiceWorker();
+console.log("src/index.js launched");
+
+ReactDOM.render(<Index />, document.getElementById("root"));
