@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "babel-preset-airbnb": "^2.6.0",
+    "classnames": "^2.2.6",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",
@@ -28,6 +29,7 @@
     "postcss-nested": "^3.0.0",
     "postcss-simple-vars": "^4.1.0",
     "prettier": "1.14.2",
+    "prop-types": "^15.6.2",
     "stylelint-config-standard": "^18.2.0"
   },
   "lint-staged": {
@@ -43,10 +45,10 @@
     ]
   },
   "scripts": {
-    "start": "npm-run-all -p watch:css start-js",
     "start-js": "react-scripts start",
-    "build": "npm-run-all build:css build-js",
     "build-js": "react-scripts build",
+    "start": "npm-run-all -p watch:css start-js",
+    "build": "npm-run-all build:css build-js",
     "test": "react-scripts test --env=jsdom --modulePaths=src",
     "eject": "react-scripts eject",
     "postinstall": "react-scripts build",

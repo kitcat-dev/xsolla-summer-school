@@ -1,9 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #000;
+    font-size: 18px;
 }
-body p {
-        color: #ff0;
+
+.page-header, 
+.page-main, 
+.page-footer {
+    width: 100%;
+}
+
+.page-header {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.page-footer {
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+}
+
+.page-footer .author {
+      padding: 0.5em 1em;
+      border-radius: 0.25em 0.25em 0 0;
+      font-size: 0.9em;
+      background-color: #2699FB;
+      color: white;
     }
-h3 {
-    color: #ff0;
+
+.page-main {
+    margin: 0 10%;
+    width: 80%
 }
+
