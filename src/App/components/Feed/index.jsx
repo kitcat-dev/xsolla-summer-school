@@ -1,8 +1,11 @@
 import React from "react";
 
-import "./FilmsList.css";
+import Favourites from "./../Favourites/"
+import DetailedInfo from "./../DetailedInfo/"
 
-export default class FilmsList extends React.Component {
+import "./Feed.css";
+
+export default class Feed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,12 +18,7 @@ export default class FilmsList extends React.Component {
     fetch(url)
       .then(resp => resp.json())
       .then(data => {
-        const films = data.map(film => (
-          <div key={film.id}>
-            <h3>{film.name.ru}</h3>
-            <p>{film.description.ru}</p>
-          </div>
-        ));
+        const films = data;
         this.setState({ films });
       });
   }
@@ -28,8 +26,8 @@ export default class FilmsList extends React.Component {
   render() {
     return (
       <React.Fragment>      
-        <h1>Feed</h1>
-        {this.state.films}
+        <Favourites films={this.state.films}/>
+        <DetailedInfo />        
       </React.Fragment>
     );
   }
