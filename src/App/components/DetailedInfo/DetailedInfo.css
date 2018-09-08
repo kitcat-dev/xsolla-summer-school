@@ -1,0 +1,104 @@
+@import "../../static/variables.css";
+
+.details {
+  display: none;
+  height: 100%;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;  
+}
+
+.common-info {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 66%;
+  background-color: $darkgrey;
+  padding: 30px;
+  color: $white;
+  border-radius: 10px 10px 0 0;
+
+  .film-name {
+    margin-top: 0;
+  }
+
+  .director,
+  .stars {
+      margin-bottom: 5px;
+  }
+
+  .release {
+      margin-bottom: 15px;
+  }
+
+  .director-name,
+  .stars-name,
+  .release-date {
+    font-weight: bold;
+  }
+
+  .trailer {
+      display: flex;
+      justify-content: center;
+  }
+}
+
+.my-opinion {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 34%;
+  background-color: $lightblue;
+  padding: 30px;
+
+  .opinion {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+
+    &-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: $blue;
+      width: 25%;
+      font-weight: bold;
+    }
+
+    &-text {
+      display: flex;
+      align-items: center;
+      width: 70%;
+      color: $black;
+      font-size: 0.8em;
+      line-height: normal;
+
+      .rate {
+        font-size: 1.5em;
+        font-weight: bold;
+        vertical-align: baseline;
+      }
+
+      ul {
+        padding-left: 0px;
+
+        li {
+          margin-bottom: 5px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          &:before {
+            content: ' · ';
+            margin-right: 3px;
+          }
+        }
+      }
+    }
+  }
+}

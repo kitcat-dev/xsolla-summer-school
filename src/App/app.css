@@ -1,12 +1,19 @@
-$blue: #2699fb;
-$darkgrey: #2A2A2A;
+@import './static/variables.css';
 
 * {
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-size: 18px;
+}
+
+li {
+  list-style: none;
 }
 
 .page-header, 
@@ -21,10 +28,17 @@ body {
     padding: 10px;
 }
 
+.page-main {
+    margin: 7vh 6%;
+    width: 88%;
+}
+
 .page-footer {
     display: flex;
     justify-content: center;
-    bottom: 0;
+    position: absolute;
+    left: 0;
+    width: 100%;
 
     .author {
       padding: 0.5em 1em;
@@ -35,7 +49,14 @@ body {
     }
 }
 
-.page-main {
-    margin: 0 10%;
-    width: 80%;
+@media (max-width: 768px) {
+    .details {
+        display: none;
+    }
+
+    .favourites {
+        width: 100%;
+        margin: 0;
+    }
 }
+

@@ -1,0 +1,25 @@
+.page-main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.favourites,
+.details {
+    width: 45%;
+}
+
+.favourites {
+    margin-right: 10%;
+}
+
+@media (max-width: 768px) {
+    .details {
+        display: none !important;
+    }
+
+    .favourites {
+        width: 100%;
+        margin: 0;
+    }
+}

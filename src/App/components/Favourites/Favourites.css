@@ -1,0 +1,70 @@
+@import "../../static/variables.css";
+
+.fav-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .fav-title {
+    font-weight: bold;
+    font-size: 2.5em;
+
+    .fav-art {
+      color: $blue;
+    }
+  }
+}
+
+.fav-description {
+  margin: 2em 2em 2em 0;
+}
+
+.fav-groups {
+  padding: 0;
+
+  .year {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  
+
+  .fav-item {
+    margin-left: 40px;
+    position: relative;
+
+    .heart {
+      width: 1.5em;
+      fill: $blue;
+      position: absolute;
+      left: -36px;
+      top: 7px;
+    }
+
+    .release-year {
+      font-size: 0.8rem;
+      color: $middlegrey;
+    }
+    
+    &-wrapper {
+      padding: 5px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      border-radius: 5px;
+
+      &--selected {
+        background: linear-gradient(to right, $darkblue 0%, white 100%);
+        color: $white;
+
+        .release-year {
+          color: inherit;
+        }
+
+        .heart {
+          fill: $white;
+        }
+      }
+    }
+  }
+}
