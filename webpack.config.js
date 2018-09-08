@@ -18,10 +18,6 @@ module.exports = function(env, argv) {
     componentCssLoaders.push('clean-css-loader');
   }
 
-  const mainCssLoaders = [MiniCssExtractPlugin.loader].concat(commonCssLoaders);
-
-  const mainCssPath = path.resolve(__dirname, 'src/index.css');
-
   let config = {
     mode: argv.mode,
     entry: {
@@ -72,15 +68,6 @@ module.exports = function(env, argv) {
               loader: 'postcss-loader',
             },
           ],
-        },
-        {
-          test: /\.css$/,
-          exclude: mainCssPath,
-          use: componentCssLoaders,
-        },
-        {
-          test: mainCssPath,
-          use: mainCssLoaders,
         },
         {
           test: /\.(jpe?g|png|gif|svg)$/,
