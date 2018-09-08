@@ -1,22 +1,26 @@
-import React from "react";
+import React from 'react';
+import {Component, Fragment} from "react";
 
-import CommonInfo from "./../DetailedInfo/CommonInfo";
-import MyOpinion from "./../DetailedInfo/MyOpinion";
-import { Link } from "react-router-dom";
+import CommonInfo from './../DetailedInfo/CommonInfo';
+import MyOpinion from './../DetailedInfo/MyOpinion';
+import MyLink from './../MyLink/';
+import { UI } from "./../../static/locale";
 
-import "./Film.css";
+import './Film.css';
 
-export default class Feed extends React.Component {
+export default class Feed extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-        film: undefined
+      film: undefined,
     };
   }
 
   componentDidMount() {
-    const url = 'https://xsolla-ss-films-api.herokuapp.com/films/' + this.props.match.params.id;
+    const url =
+      'https://xsolla-ss-films-api.herokuapp.com/films/' +
+      this.props.match.params.id;
     fetch(url)
       .then(resp => resp.json())
       .then(film => {
@@ -25,18 +29,22 @@ export default class Feed extends React.Component {
   }
 
   render() {
-    return (
-      <React.Fragment>
-          <span className="link"><Link to="/">Back to feed</Link></span>
+    const {lang} = this.props;
+    const {film} = this.state;
 
-          { this.state.film && <div className="film-block-wrapper">
-                                    <section className="film-block">
-                                        <CommonInfo film={this.state.film} lang={this.props.lang}/>
-                                        <MyOpinion film={this.state.film} lang={this.props.lang}/>
-                                    </section>
-                                </div> 
-            }
-      </React.Fragment>
+    return (
+      <Fragment>
+        <MyLink path="/" message={UI.backToFeedMessage[lang]} />
+
+        {film && (
+          <div className="film-block-wrapper">
+            <section className="film-block">
+              <CommonInfo film={film} lang={lang} />
+              <MyOpinion film={film} lang={lang} />
+            </section>
+          </div>
+        )}
+      </Fragment>
     );
   }
 }

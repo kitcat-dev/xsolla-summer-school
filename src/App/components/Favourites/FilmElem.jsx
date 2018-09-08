@@ -1,8 +1,9 @@
 import React from "react";
+import {Component} from "react";
 
 import "./Favourites.css";
 
-export default class FilmElem extends React.Component {
+export default class FilmElem extends Component {
   render() {
     const {film, lang} = this.props;
     const className = this.props.selectedFilmId === film.id ?  'fav-item-wrapper fav-item-wrapper--selected' : 'fav-item-wrapper';

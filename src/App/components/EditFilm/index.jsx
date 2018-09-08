@@ -1,16 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Component} from "react";
 
-export default class EditFilm extends React.Component {
-  
+import MyLink from "./../MyLink/"
+import { UI } from "./../../static/locale";
 
+export default class EditFilm extends Component {
   render() {
+    const {lang} = this.props;
+
     return (
-      <React.Fragment>
-        <Link to="/">Back to feed</Link>
-      
-        <h1>Edit film</h1>
-      </React.Fragment>
+      <div>
+        <MyLink path='/' message={UI.backToFeedMessage[lang]} />
+        
+        <h1>Edit Film</h1>
+      </div>
     );
   }
 }

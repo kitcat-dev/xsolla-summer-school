@@ -1,10 +1,13 @@
 import React from "react";
+import { Component } from 'react';
+
 import { UI } from "../../static/locale";
 
 import "./DetailedInfo.css";
 
-export default class CommonInfo extends React.Component {
+export default class CommonInfo extends Component {
     render() {
+      const {film, lang} = this.props;
         // TODO: переписать сюда в константы this.props.film && this.props.film.ЧТО-ТО[this.props.lang], чтобы внизу не было непонятно полотна из this'ов
         // this.props.lang тоже.
         const releaseDate = this.props.film ? new Date(this.props.film.releaseDate) : '1 jun';
@@ -16,12 +19,12 @@ export default class CommonInfo extends React.Component {
         };
       return (
         <div className="common-info">
-          <h1 className="film-name">{ this.props.film ? this.props.film.name[this.props.lang] : 'Film name'}</h1>
-          <div className="director">{UI.director[this.props.lang]}: <span className="director-name">
-            {this.props.film && this.props.film.director[this.props.lang]}
+          <h1 className="film-name">{ film ? film.name[lang] : 'Film name'}</h1>
+          <div className="director">{UI.director[lang]}: <span className="director-name">
+            {film && film.director[lang]}
           </span></div>
-          <div className="stars">{UI.famousPeople[this.props.lang]}: <span className="stars-name">{this.props.film && this.props.film.famousPeople[this.props.lang]}</span></div>
-          <div className="release">{UI.releaseDate[this.props.lang]}: <span className="release-date">{this.props.film && releaseDate.toLocaleString(this.props.lang, dateOptions)}</span></div>
+          <div className="stars">{UI.famousPeople[lang]}: <span className="stars-name">{film && film.famousPeople[lang]}</span></div>
+          <div className="release">{UI.releaseDate[lang]}: <span className="release-date">{film && releaseDate.toLocaleString(lang, dateOptions)}</span></div>
 
           <div className="trailer">
           <iframe title="filmIDTitle" width="500" height="280" src="https://www.youtube.com/embed/4im85EMeNUE" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>

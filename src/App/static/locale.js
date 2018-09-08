@@ -57,4 +57,12 @@ export const UI = {
     ru: 'Альберт Абдульманов, 2018',
     en: 'Albert Abdulmanov, 2018',
   },
+  notFoundMessage: {
+    ru: 'Ошибка 404. Страница не найдена',
+    en: 'Error 404. Page not found',
+  },
+  backToFeedMessage: {
+    ru: 'Вернуться к списку фильмов',
+    en: 'Back to film list',
+  },
 };

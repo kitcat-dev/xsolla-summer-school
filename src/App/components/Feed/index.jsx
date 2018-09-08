@@ -1,11 +1,12 @@
 import React from "react";
+import {Component, Fragment} from "react";
 
 import Favourites from "./../Favourites/"
 import DetailedInfo from "./../DetailedInfo/"
 
 import "./Feed.css";
 
-export default class Feed extends React.Component {
+export default class Feed extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,17 +32,20 @@ export default class Feed extends React.Component {
   }
 
   render() {
+    const {films, selectedFilmId} = this.state;
+    const {lang} = this.props;
+
     return (
-      <React.Fragment>      
-        <Favourites films={this.state.films} 
-                    lang={this.props.lang}
+      <Fragment>      
+        <Favourites films={films} 
+                    lang={lang}
                     setFilmId={this.setFilmId}
-                    selectedFilmId={this.state.selectedFilmId}/>
+                    selectedFilmId={selectedFilmId}/>
         <DetailedInfo 
-                    film={this.state.films[this.state.selectedFilmId]} 
-                    lang={this.props.lang}
+                    film={films[selectedFilmId]} 
+                    lang={lang}
                     selectedFilmId={this.state.selectedFilmId}/>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

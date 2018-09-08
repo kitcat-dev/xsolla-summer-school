@@ -1,20 +1,21 @@
 import React from "react";
+import {Component} from "react";
 import { UI } from "../../static/locale";
 import FilmElem from "./FilmElem"
 
 import "./Favourites.css";
 
-export default class Favourites extends React.Component {
+export default class Favourites extends Component {
   render() {
     const {films, lang, selectedFilmId} = this.props;
 
     return (
       <main className="favourites">      
         <header className="fav-header">
-          <span className="fav-title">{UI.feedHeaderILIKE[this.props.lang]} <span className="fav-art">{UI.feedHeaderWHAT[this.props.lang]}</span></span>
+          <span className="fav-title">{UI.feedHeaderILIKE[lang]} <span className="fav-art">{UI.feedHeaderWHAT[lang]}</span></span>
         </header>
 
-        <div className="fav-description">{UI.feedDescription[this.props.lang]}</div>
+        <div className="fav-description">{UI.feedDescription[lang]}</div>
         <div className="fav-list">
             <ul className="fav-groups">
               <h2 className="year">2018</h2>

@@ -1,4 +1,5 @@
 import React from "react";
+import {Component, Fragment} from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Feed from "./components/Feed/";
@@ -11,7 +12,7 @@ import { UI } from "./static/locale";
 
 import "./app.css";
 
-export default class App extends React.Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
 
@@ -27,36 +28,37 @@ export default class App extends React.Component {
   };
 
   render() {
+    const {lang} = this.state;
+
     return (
-      <React.Fragment>
+      <Fragment>
         <header className="page-header">
           <LangSwitcher
             onChange={this.switchLanguage}
-            checkedChildren={"Ru"}
-            unCheckedChildren={"En"}
+            checkedChildren={"En"}
+            unCheckedChildren={"Ru"}
           />
         </header>
         <main className="page-main">
           <Switch>
             <Route
-              exact path="/" render={() => <Feed lang={this.state.lang} />}
+              exact path="/" render={() => <Feed lang={lang} />}
             />
             <Route
-              path="/film/:id" render={(props) => <Film {...props} lang={this.state.lang}/>}
+              path="/film/:id" render={(props) => <Film {...props} lang={lang}/>}
             />
-            <Route path="/newfilm" render={() => <NewFilm lang={this.state.lang} />}
+            <Route path="/newfilm" render={() => <NewFilm lang={lang} />}
             />
-            {/* TODO: Добавить children, чтобы можно было переходить к редактированию определенного фильма: /editfilm/{FILMNAME} */}
-            <Route path="/editfilm" render={() => <EditFilm lang={this.state.lang} />}
+            <Route path="/editfilm/:id" render={(props) => <EditFilm {...props} lang={lang} />}
             />
-            <Route component={Page404} />
+            <Route render={() => <Page404 lang={lang} /> }
+            />
           </Switch>
         </main>
         <footer className="page-footer">
-          {/* TODO: Исправить футер, чтобы нормально крепился к низу экрана */}
-          {/* <div className="author">{UI.footerAuthor[this.state.lang]}</div> */}
+          <div className="author">{UI.footerAuthor[this.state.lang]}</div>
         </footer>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

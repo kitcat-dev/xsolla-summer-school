@@ -1,13 +1,16 @@
 import React from "react";
+import {Component} from "react";
 import PropTypes from 'prop-types';
 
 import "./LangSwitcher.css";
 const classNames = require('classnames');
 
+// Fork from: https://github.com/react-component/switch with my corrections especially for this project
+
 function noop() {
 }
 
-export default class LangSwitcher extends React.Component {
+export default class LangSwitcher extends Component {
   constructor(props) {
     super(props);
 

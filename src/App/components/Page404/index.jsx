@@ -1,14 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Component} from "react";
+
+import MyLink from "./../MyLink/"
+import { UI } from "./../../static/locale";
+
 import "./Page404.css";
 
-export default class Page404 extends React.Component {
+export default class Page404 extends Component {
   render() {
+    const {lang} = this.props;
+
     return (
       <div>
-        <span className="link"><Link to="/">Back to feed</Link></span>
+        <MyLink path='/' message={UI.backToFeedMessage[lang]} />
         
-        <h1>Page 404</h1>
+        <h1>{UI.notFoundMessage[lang]}</h1>
       </div>
     );
   }

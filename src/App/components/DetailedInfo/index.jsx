@@ -1,10 +1,12 @@
 import React from "react";
+import { Component } from 'react';
+
 import CommonInfo from "./CommonInfo";
 import MyOpinion from "./MyOpinion";
 
 import "./DetailedInfo.css";
 
-export default class DetailedInfo extends React.Component {
+export default class DetailedInfo extends Component {
   constructor(props) {
     super(props);
 
@@ -20,12 +22,15 @@ export default class DetailedInfo extends React.Component {
   }
 
   render() {
-    const noneOrBlock = this.state.isOpen === true ? { display: 'block' } : { display: 'none' };
+    const {film, lang} = this.props;
+    const {isOpen} = this.state;
+
+    const noneOrBlock = isOpen === true ? { display: 'block' } : { display: 'none' };
 
     return (
       <aside className="details" style={noneOrBlock}>
-        <CommonInfo film={this.props.film} lang={this.props.lang}/>
-        <MyOpinion film={this.props.film} lang={this.props.lang}/>
+        <CommonInfo film={film} lang={lang}/>
+        <MyOpinion film={film} lang={lang}/>
       </aside>
     );
   }
