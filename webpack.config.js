@@ -31,6 +31,9 @@ module.exports = function(env, argv) {
     resolve: {
       extensions: ['*', '.js', '.jsx'],
     },
+    devServer: {
+      historyApiFallback: true,
+    },
     module: {
       rules: [
         {
@@ -95,9 +98,11 @@ module.exports = function(env, argv) {
         },
       ],
     },
+
     plugins: [
       new HtmlWebpackPlugin({
         template: 'src/index.html',
+        favicon: 'src/favicon.png',
       }),
       new MiniCssExtractPlugin({
         filename: isProduction ? './[name].[contenthash].css' : './[name].css',
