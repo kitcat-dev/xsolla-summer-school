@@ -42,7 +42,7 @@ export default class CommonInfo extends Component {
             title="filmIDTitle"
             width="500"
             height="280"
-            src="https://www.youtube.com/embed/4im85EMeNUE"
+            src={`https://www.youtube.com/embed/${film.trailerYoutubeID}`}
             frameBorder="0"
             allow="autoplay; encrypted-media"
             allowFullScreen

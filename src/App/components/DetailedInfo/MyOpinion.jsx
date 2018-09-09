@@ -16,8 +16,8 @@ export default class MyOpinion extends Component {
     };
   }
 
-  setRatings() {
-    const url = `https://cors.io/?https://rating.kinopoisk.ru/${this.props.film.kpID}.xml`;
+  setRatings(film) {
+    const url = `https://cors.io/?https://rating.kinopoisk.ru/${film.kpID}.xml`;
 
     fetch(url)
       .then(resp => resp.text())
@@ -29,31 +29,23 @@ export default class MyOpinion extends Component {
 
         this.setState({ 
           kpRating: kpRating.slice(0, 3),
-          imdbRating: imdbRating.slice(0, 3)
+          imdbRating: imdbRating
         });
       })
   }
 
   componentDidMount() {
     console.log(this.props.film.id + ' mounted');
-    this.setRatings();
+    this.setRatings(this.props.film);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props.film.id + ' received props');
-    console.log(`nextProps.film.id = ${nextProps.film.id}`);
-    console.log(`this.props.film.id = ${this.props.film.id}`);
     if (nextProps.film !== this.props.film) {
-      console.log(this.props.film.id + ' updates state');
       this.setState({ 
         kpRating: undefined,
         imdbRating: undefined
       })
-      console.log(`After nulling: this.state.kpRating = ${this.state.kpRating}`);
-      console.log(`After nulling: this.state.imdbRating = ${this.state.imdbRating}`);
-      this.setRatings();
-      console.log(`After setting: this.state.kpRating = ${this.state.kpRating}`);
-      console.log(`After setting: this.state.imdbRating = ${this.state.imdbRating}`);
+      this.setRatings(nextProps.film);
     }
   }
 

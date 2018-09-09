@@ -3,7 +3,6 @@ import {Component, Fragment} from "react";
 
 import CommonInfo from './../DetailedInfo/CommonInfo';
 import MyOpinion from './../DetailedInfo/MyOpinion';
-import MyLink from './../MyLink/';
 import { UI } from "./../../static/locale";
 
 import './Film.css';
@@ -34,8 +33,6 @@ export default class Feed extends Component {
 
     return (
       <Fragment>
-        <MyLink path="/" message={UI.backToFeedMessage[lang]} />
-
         {film && (
           <div className="film-block-wrapper">
             <section className="film-block">

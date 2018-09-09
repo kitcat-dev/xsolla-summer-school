@@ -27,9 +27,15 @@ li {
 
 .page-header {
   display: flex;
-  flex: 0 0 auto;
-  justify-content: center;
+  justify-content: space-between;
   padding: 10px;
+  height: 30px;
+
+  .rc-switch-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
 }
 
 .page-main {

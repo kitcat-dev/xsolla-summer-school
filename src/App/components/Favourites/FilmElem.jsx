@@ -1,6 +1,7 @@
 import React from "react";
-import {Component} from "react";
-const classNames = require('classnames');
+import { Component } from "react";
+import { Link } from "react-router-dom";
+import classNames from 'classnames';
 
 import "./Favourites.css";
 
@@ -20,6 +21,12 @@ export default class FilmElem extends Component {
             <div className="film-name">{film.name[lang]}</div>
             <span className="release-year">{film.releaseDate.split(',')[0]}</span>
         </li>
+        <Link to={{
+           pathname: '/',
+           search: `?selectedFilmId=${film.id}`,
+        }}>
+          <div className="alabama">Click me</div>
+        </Link>
       </div>
     );
   }

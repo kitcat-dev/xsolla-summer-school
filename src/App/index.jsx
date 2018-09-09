@@ -8,6 +8,7 @@ import EditFilm from "./components/EditFilm/";
 import Film from "./components/Film/";
 import Page404 from "./components/Page404/";
 import LangSwitcher from "./components/LangSwitcher/";
+import MyLink from "./components/MyLink/";
 import { UI } from "./static/locale";
 
 import "./app.css";
@@ -33,11 +34,30 @@ export default class App extends Component {
     return (
       <Fragment>
         <header className="page-header">
-          <LangSwitcher
-            onChange={this.switchLanguage}
-            checkedChildren={"En"}
-            unCheckedChildren={"Ru"}
-          />
+          <Switch>
+            <Route
+              exact path="/" render={() => 
+                <div className="rc-switch-wrapper"> 
+                  <LangSwitcher
+                    onChange={this.switchLanguage}
+                    checkedChildren={"En"}
+                    unCheckedChildren={"Ru"}
+                  />
+                </div>
+              }
+            />
+            <Route render={(props) => 
+              <Fragment>
+                <MyLink path="/" message={UI.backToFeedMessage[lang]}></MyLink>
+                <LangSwitcher
+                  onChange={this.switchLanguage}
+                  checkedChildren={"En"}
+                  unCheckedChildren={"Ru"}
+                />
+              </Fragment>
+            }
+            />
+          </Switch>
         </header>
         <main className="page-main">
           <Switch>
