@@ -46,7 +46,7 @@ export default class App extends Component {
                 </div>
               }
             />
-            <Route render={(props) => 
+            <Route render={() =>
               <Fragment>
                 <MyLink path="/" message={UI.backToFeedMessage[lang]}></MyLink>
                 <LangSwitcher

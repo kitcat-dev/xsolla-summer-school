@@ -16,11 +16,17 @@ export default class Feed extends Component {
   }
 
   componentDidMount() {
-    const params = new URLSearchParams(this.props.location.search);
-    this.setState({selectedFilmId: params.get('id')});
-
     this.getFilms();
+
+    const params = new URLSearchParams(this.props.location.search);
+    this.setState({selectedFilmId: params.get('id')});    
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log(`this.state ${this.state.selectedFilmId}`);
+  //   console.log(`next.state ${nextState.selectedFilmId}`);
+  //   return !!(this.state.selectedFilmId !== nextState.selectedFilmId || this.state.selectedFilmId === null || nextState.selectedFilmId === null);
+  // }
 
   setFilmId = filmId => {
     this.setState({
@@ -54,7 +60,6 @@ export default class Feed extends Component {
             lang={lang}
             selectedFilmId={selectedFilmId}/>
         }
-      </Fragment>
-    );
+      </Fragment>)
   }
 }
