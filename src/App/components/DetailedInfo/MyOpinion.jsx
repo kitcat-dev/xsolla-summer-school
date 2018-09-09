@@ -16,17 +16,7 @@ export default class MyOpinion extends Component {
     };
   }
 
-  setImdbRating() {
-    const url = 'http://www.omdbapi.com/?apikey=6f60be53&i=' + this.props.film.imdbID;
-
-    fetch(url)
-      .then(resp => resp.json())
-      .then(data => {
-        this.setState({ imdbRating: data.imdbRating });
-      })
-  }
-
-  setKpRating() {
+  setRatings() {
     const url = `https://cors.io/?https://rating.kinopoisk.ru/${this.props.film.kpID}.xml`;
 
     fetch(url)
@@ -34,18 +24,19 @@ export default class MyOpinion extends Component {
       .then(data => {
         const parser = new DOMParser();
         const xml = parser.parseFromString(data, 'text/xml');
-        const rating = xml.getElementsByTagName('kp_rating')[0].textContent;
+        const kpRating = xml.getElementsByTagName('kp_rating')[0].textContent;
+        const imdbRating = xml.getElementsByTagName('imdb_rating')[0].textContent;
 
         this.setState({ 
-          kpRating: rating.slice(0, 3)
+          kpRating: kpRating.slice(0, 3),
+          imdbRating: imdbRating.slice(0, 3)
         });
       })
   }
 
   componentDidMount() {
     console.log(this.props.film.id + ' mounted');
-    this.setKpRating();
-    this.setImdbRating();
+    this.setRatings();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -60,8 +51,7 @@ export default class MyOpinion extends Component {
       })
       console.log(`After nulling: this.state.kpRating = ${this.state.kpRating}`);
       console.log(`After nulling: this.state.imdbRating = ${this.state.imdbRating}`);
-      this.setKpRating();
-      this.setImdbRating();
+      this.setRatings();
       console.log(`After setting: this.state.kpRating = ${this.state.kpRating}`);
       console.log(`After setting: this.state.imdbRating = ${this.state.imdbRating}`);
     }
