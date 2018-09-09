@@ -9,9 +9,7 @@ export default class MyLink extends Component {
     const {message, path} = this.props;
 
     return (
-      <div>
-        <span className="my-link"><Link to={path}>{message}</Link></span>
-      </div>
+      <span className="my-link"><Link to={path}>{message}</Link></span>
     );
   }
 }

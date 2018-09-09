@@ -15,10 +15,10 @@ export default class DetailedInfo extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidMount() {
     this.setState({
-      isOpen: nextProps.selectedFilmId !== null ? true : false
-    })
+      isOpen: this.props.selectedFilmId !== null ? true : false
+    });
   }
 
   render() {

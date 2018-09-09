@@ -8,7 +8,7 @@ import "./Favourites.css";
 export default class Favourites extends Component {
   render() {
     const {films, lang, selectedFilmId} = this.props;
-
+    
     return (
       <main className="favourites">      
         <header className="fav-header">

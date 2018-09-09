@@ -48,7 +48,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 34%;
+  height: auto;
   background-color: $lightblue;
   padding: 30px;
 
@@ -77,10 +77,17 @@
       font-size: 0.8em;
       line-height: normal;
 
+      .kp, .imdb {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        flex-wrap: wrap;
+      }
+
       .rate {
         font-size: 1.5em;
         font-weight: bold;
-        vertical-align: baseline;
+        margin: 0 3px;
       }
 
       ul {

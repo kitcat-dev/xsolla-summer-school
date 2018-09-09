@@ -1,40 +1,86 @@
-import React from "react";
+import React from 'react';
 import { Component } from 'react';
+import { PulseLoader, ClipLoader } from 'halogenium';
 
-import { UI } from "../../static/locale";
+import { UI } from '../../static/locale';
+import { Blue, Black } from '../../static/colorVariables';
 
-import "./DetailedInfo.css";
+import './DetailedInfo.css';
 
 export default class MyOpinion extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      imdbRating: '0.0',
-      kpRating: '0.0',
-    }
+      imdbRating: undefined,
+      kpRating: undefined,
+    };
   }
 
-  setRatings() {
-    if (film !== undefined) {
-      const url = "http://www.omdbapi.com/?apikey=6f60be53&i=" + film.imdbID;
-      fetch(url)
-        .then(resp => resp.json())
-        .then(data => {
-          this.setState({ imdbRating: data.imdbRating });
+  setImdbRating() {
+    const url = 'http://www.omdbapi.com/?apikey=6f60be53&i=' + this.props.film.imdbID;
+
+    fetch(url)
+      .then(resp => resp.json())
+      .then(data => {
+        this.setState({ imdbRating: data.imdbRating });
+      })
+  }
+
+  setKpRating() {
+    const url = `https://cors.io/?https://rating.kinopoisk.ru/${this.props.film.kpID}.xml`;
+
+    fetch(url)
+      .then(resp => resp.text())
+      .then(data => {
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(data, 'text/xml');
+        const rating = xml.getElementsByTagName('kp_rating')[0].textContent;
+
+        this.setState({ 
+          kpRating: rating.slice(0, 3)
         });
+      })
+  }
+
+  componentDidMount() {
+    console.log(this.props.film.id + ' mounted');
+    this.setKpRating();
+    this.setImdbRating();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(this.props.film.id + ' received props');
+    console.log(`nextProps.film.id = ${nextProps.film.id}`);
+    console.log(`this.props.film.id = ${this.props.film.id}`);
+    if (nextProps.film !== this.props.film) {
+      console.log(this.props.film.id + ' updates state');
+      this.setState({ 
+        kpRating: undefined,
+        imdbRating: undefined
+      })
+      console.log(`After nulling: this.state.kpRating = ${this.state.kpRating}`);
+      console.log(`After nulling: this.state.imdbRating = ${this.state.imdbRating}`);
+      this.setKpRating();
+      this.setImdbRating();
+      console.log(`After setting: this.state.kpRating = ${this.state.kpRating}`);
+      console.log(`After setting: this.state.imdbRating = ${this.state.imdbRating}`);
     }
   }
 
   render() {
-    const {film, lang} = this.props;
+    const { film, lang } = this.props;
 
-    const whatILikeHere = film ? <ul>
-      {film.whatILikeHere[lang].map((item, index) => (
-        <li key={index}>{item}</li>
-      ))}
-    </ul> : '';
+    const whatILikeHere = film ? (
+      <ul>
+        {film.whatILikeHere[lang].map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    ) : (
+      ''
+    );
 
-    return (
+    return film ? (
       <div className="my-opinion">
         <div className="opinion">
           <div className="opinion-title">{UI.description[lang]}</div>
@@ -42,17 +88,29 @@ export default class MyOpinion extends Component {
         </div>
         <div className="opinion">
           <div className="opinion-title">{UI.whatILikeHere[lang]}</div>
-          <div className="opinion-text ">
-           {film && whatILikeHere}
-          </div>
+          <div className="opinion-text ">{film && whatILikeHere}</div>
         </div>
         <div className="opinion">
           <div className="opinion-title">{UI.rates[lang]}</div>
           <div className="opinion-text">
-            <div className="kp"><span className="rate">{this.state.kpRating}&#160;</span> {UI.ratesKP[lang]}</div>
-            <div className="imdb"><span className="rate">&#160;{this.state.imdbRating}&#160;</span> {UI.ratesIMDb[lang]}</div>
+            <span className="kp">
+              <span className="rate">
+                { this.state.kpRating || <ClipLoader color={Black} size="16px" margin="4px" />}
+              </span>
+              {UI.ratesKP[lang]}
+            </span>
+            <span className="imdb">
+              <span className="rate">
+                { this.state.imdbRating || <ClipLoader color={Black} size="16px" margin="4px" />}
+              </span>
+              {UI.ratesIMDb[lang]}
+            </span>
           </div>
         </div>
+      </div>
+    ) : (
+      <div className="my-opinion">
+        <PulseLoader color={Blue} size="16px" margin="4px" />
       </div>
     );
   }

@@ -51,7 +51,7 @@ export const UI = {
   },
   ratesIMDb: {
     ru: ' на IMDb',
-    en: 'on IMDb',
+    en: ' on IMDb',
   },
   footerAuthor: {
     ru: 'Альберт Абдульманов, 2018',

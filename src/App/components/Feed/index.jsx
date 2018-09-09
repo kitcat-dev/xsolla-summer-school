@@ -41,10 +41,12 @@ export default class Feed extends Component {
                     lang={lang}
                     setFilmId={this.setFilmId}
                     selectedFilmId={selectedFilmId}/>
+        {selectedFilmId !== null && 
         <DetailedInfo 
-                    film={films[selectedFilmId]} 
-                    lang={lang}
-                    selectedFilmId={this.state.selectedFilmId}/>
+          film={films[selectedFilmId]} 
+          lang={lang}
+          selectedFilmId={this.state.selectedFilmId}/>
+        }
       </Fragment>
     );
   }
