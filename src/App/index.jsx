@@ -62,7 +62,7 @@ export default class App extends Component {
         <main className="page-main">
           <Switch>
             <Route
-              exact path="/" render={() => <Feed lang={lang} />}
+              exact path="/" render={(props) => <Feed {...props} lang={lang} />}
             />
             <Route
               path="/film/:id" render={(props) => <Film {...props} lang={lang}/>}

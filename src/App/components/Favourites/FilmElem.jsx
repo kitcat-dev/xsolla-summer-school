@@ -23,7 +23,7 @@ export default class FilmElem extends Component {
         </li>
         <Link to={{
            pathname: '/',
-           search: `?selectedFilmId=${film.id}`,
+           search: `?id=${film.id}`,
         }}>
           <div className="alabama">Click me</div>
         </Link>
