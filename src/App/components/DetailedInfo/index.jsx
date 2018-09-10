@@ -21,7 +21,7 @@ export default class DetailedInfo extends Component {
   }
 
   render() {
-    const {film, lang} = this.props;
+    const {lang, film} = this.props;
     const {isOpen} = this.state;
 
     const noneOrBlock = isOpen === true ? { display: 'block' } : { display: 'none' };

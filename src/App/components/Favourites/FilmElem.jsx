@@ -1,20 +1,51 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import './Favourites.css';
 
 export default class FilmElem extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isSelected: this.props.selectedFilmId === this.props.film.id,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedFilmId !== this.props.selectedFilmId) {
+      this.setState({
+        isSelected: nextProps.selectedFilmId === nextProps.film.id,
+      });
+    }
+  }
+
+  // state = {
+  //   selectedFilmId: null,
+  //   isSelected: false
+  // };
+
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   if (prevState.selectedFilmId !== nextProps.selectedFilmId) {
+  //     return {
+  //       selectedFilmId: nextProps.selectedFilmId,
+  //       isSelected: nextProps.selectedFilmId === nextProps.film.id
+  //     }
+  //   }
+  //   return null;
+  // }
+
   render() {
-    const { film, lang, selectedFilmId } = this.props;
-    const isSelected = selectedFilmId === film.id;
-    const className = classNames({
+    const { film, lang, matchIDs } = this.props;
+    // const isSelected = selectedFilmId === matchIDs[film.id];
+    const itemClass = classNames({
       'fav-item-wrapper': true,
-      'fav-item-wrapper--selected': isSelected,
+      'fav-item-wrapper--selected': this.state.isSelected,
     });
 
     return (
-      <div className={className}>
+      <div className={itemClass}>
         <Link
           to={{
             pathname: '/',
@@ -23,7 +54,8 @@ export default class FilmElem extends Component {
         >
           <li
             className="fav-item"
-            onClick={() => this.props.setFilmId(film.id)}
+            onClick={() => this.props.setFilmId(matchIDs[film.id])}
+            // onClick={() => this.props.setFilmId(film.id)}
           >
             {film.isFavourite && (
               <svg className="heart" viewBox="0 0 512 512">

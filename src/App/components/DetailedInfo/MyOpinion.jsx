@@ -34,7 +34,6 @@ export default class MyOpinion extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.film.id + ' mounted');
     this.setRatings(this.props.film);
   }
 
