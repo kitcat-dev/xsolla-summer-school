@@ -12,13 +12,14 @@ export default class CommonInfo extends Component {
 
     const releaseDate = this.props.film
       ? new Date(this.props.film.releaseDate)
-      : '1 jun';
+      : 'Date not supported in your browser';
     const dateOptions = {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
       timezone: 'YEKT',
     };
+    const locale = `${lang}-${lang.toUpperCase()}`;
 
     return film ? (
       <div className="common-info">
@@ -34,7 +35,7 @@ export default class CommonInfo extends Component {
         <div className="release">
           {UI.releaseDate[lang]}:{' '}
           <span className="release-date">
-            {releaseDate.toLocaleString(lang, dateOptions)}
+            {releaseDate.toLocaleString(locale, dateOptions)}
           </span>
         </div>
 

@@ -25,12 +25,20 @@
       align-items: center;
       margin-bottom: 20px;
 
+      &-title {
+        margin-bottom: 10px;
+      }
+
       .opinion-text {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         text-align: center;
         width: 100%;
+
+        ul {
+          margin: 0;
+        }
       }
     }
   }
