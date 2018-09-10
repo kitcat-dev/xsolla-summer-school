@@ -75,7 +75,7 @@ export default class App extends Component {
           </Switch>
         </main>
         <footer className="page-footer">
-          <div className="author">{UI.footerAuthor[this.state.lang]}</div>
+          <a href="https://github.com/albertmolodec" className="author">{UI.footerAuthor[this.state.lang]}</a>
         </footer>
       </Fragment>
     );

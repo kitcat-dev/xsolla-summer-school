@@ -1,69 +1,134 @@
-import React, {Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Form } from 'informed';
 
-import { UI } from "../../static/locale";
+import { UI } from '../../static/locale';
+import InputBlock from './InputBlock';
 
 import './PostForm.css';
 
 export default class PostForm extends Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.setFormApi = this.setFormApi.bind(this);
+
+    this.state = {};
+  }
+
+  handleClick = () => {
+    event.preventDefault();    
+    const data = this.formApi.getState().values;
+
+    fetch('https://xsolla-ss-films-api.herokuapp.com/films', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response => {
+      console.log('Response status: ' + response.status);
+      console.log('Response status text: ' + response.statusText);
+      console.log('Response url: ' + response.url);
+    }, error => {
+      console.log('Error message: ' + error.message); //=> String
+    })
+  }
+
+  setFormApi(formApi) {
+    this.formApi = formApi;
+  }
+
   render() {
-    const {lang} = this.props;
+    const { lang, film } = this.props;
 
     return (
       <div className="form-wrap">
-        <form action="" className="film-form">
-          
-          <div className="col-1 input-block">
-              <input type="text" id="NameRU" placeholder=" "/>
-              <label htmlFor="NameRU">{UI.postForm.ruFields.film[lang]}</label>
-          </div>
-          <div className="col-1 input-block">
-              <input type="text" id="NameEN" placeholder=" " />
-              <label htmlFor="NameEN">{UI.postForm.enFields.film[lang]}</label>
-          </div>
-
-          <div className="col-1 input-block">
-              <input type="text" id="directorNameRU" placeholder=" "/>
-              <label htmlFor="directorNameRU">{UI.postForm.ruFields.directorName[lang]}</label>
-          </div>
-          <div className="col-1 input-block">
-              <input type="text" id="directorNameEN" placeholder=" " />
-              <label htmlFor="directorNameEN">{UI.postForm.enFields.directorName[lang]}</label>
-          </div>
-
-          <div className="col-1 input-block">
-              <input type="text" id="famousPeopleRU" placeholder=" "/>
-              <label htmlFor="famousPeopleRU">{UI.postForm.ruFields.famousPeople[lang]}</label>
-          </div>
-          <div className="col-1 input-block">
-              <input type="text" id="famousPeopleEN" placeholder=" " />
-              <label htmlFor="famousPeopleEN">{UI.postForm.enFields.famousPeople[lang]}</label>
-          </div>
-          
-          <div className="col-2 input-block">
-              <input type="text" id="releaseDate" placeholder=" " />
-              <label htmlFor="releaseDate">{UI.postForm.commonFields.releaseDate[lang]}</label>
-          </div>
-
-          <div className="col-2 input-block">
-              <input type="text" id="watchingDate" placeholder=" " />
-              <label htmlFor="watchingDate">{UI.postForm.commonFields.watchingDate[lang]}</label>
-          </div>
-
-          <div className="col-2 input-block">
-              <input type="text" id="imdbID" placeholder=" " />
-              <label htmlFor="imdbID">{UI.postForm.commonFields.imdbID[lang]}</label>
-          </div>
-
-          <div className="col-2 input-block">
-              <input type="text" id="kpID" placeholder=" " />
-              <label htmlFor="kpID">{UI.postForm.commonFields.kpID[lang]}</label>
-          </div>
-
-          <div className="col-2 input-block">
-              <input type="text" id="trailerYoutubeID" placeholder=" " />
-              <label htmlFor="trailerYoutubeID">{UI.postForm.commonFields.trailerYoutubeID[lang]}</label>
-          </div>
-        </form>
+        <Form action="" className="film-form" getApi={this.setFormApi}>
+          {({ formApi }) => (
+            <Fragment>
+              {' '}
+              <InputBlock
+                colAmount="1"
+                id="NameRU"
+                label={UI.postForm.ruFields.film[lang]}
+              />
+              <InputBlock
+                colAmount={1}
+                id="NameEN"
+                label={UI.postForm.enFields.film[lang]}
+              />
+              <InputBlock
+                colAmount={1}
+                id="directorNameRU"
+                label={UI.postForm.ruFields.directorName[lang]}
+              />
+              <InputBlock
+                colAmount={1}
+                id="directorNameEN"
+                label={UI.postForm.enFields.directorName[lang]}
+              />
+              <InputBlock
+                colAmount={1}
+                id="famousPeopleRU"
+                label={UI.postForm.ruFields.famousPeople[lang]}
+              />
+              <InputBlock
+                colAmount={1}
+                id="famousPeopleEN"
+                label={UI.postForm.enFields.famousPeople[lang]}
+              />
+              <InputBlock
+                colAmount={1}
+                id="descriptionRU"
+                label={UI.postForm.ruFields.description[lang]}
+              />
+              <InputBlock
+                colAmount={1}
+                id="descriptionEN"
+                label={UI.postForm.enFields.description[lang]}
+              />
+              <InputBlock
+                colAmount={1}
+                id="whatILikeHereRU"
+                label={UI.postForm.ruFields.whatILikeHere[lang]}
+              />
+              <InputBlock
+                colAmount={1}
+                id="whatILikeHereEN"
+                label={UI.postForm.enFields.whatILikeHere[lang]}
+              />
+              <InputBlock
+                colAmount={2}
+                id="releaseDate"
+                label={UI.postForm.commonFields.releaseDate[lang]}
+              />
+              <InputBlock
+                colAmount={2}
+                id="watchingDate"
+                label={UI.postForm.commonFields.watchingDate[lang]}
+              />
+              <InputBlock
+                colAmount={2}
+                id="imdbID"
+                label={UI.postForm.commonFields.imdbID[lang]}
+              />
+              <InputBlock
+                colAmount={2}
+                id="kpID"
+                label={UI.postForm.commonFields.kpID[lang]}
+              />
+              <InputBlock
+                colAmount={2}
+                id="trailerYoutubeID"
+                label={UI.postForm.commonFields.trailerYoutubeID[lang]}
+              />
+              <button type="submit" className="square-button" onClick={this.handleClick}>
+                {UI.postForm.commonFields.addFilmButton[lang]}
+              </button>
+            </Fragment>
+          )}
+        </Form>
       </div>
     );
   }

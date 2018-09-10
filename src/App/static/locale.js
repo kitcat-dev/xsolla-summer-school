@@ -132,6 +132,10 @@ export const UI = {
         ru: 'Идентификатор трейлера на Youtube',
         en: 'Trailer ID on Youtube',
       },
+      addFilmButton: {
+        ru: 'Добавить фильм',
+        en: 'Add film',
+      },
     },
   },
 };

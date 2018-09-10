@@ -9,9 +9,10 @@
   font-size: 0.7em;
   margin-top: 30px;
   display: flex;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
 
-  .col-1, .col-2 {
+  .col-1,
+  .col-2 {
     width: 100%;
     margin-bottom: 30px;
   }
@@ -60,6 +61,28 @@
     }
     input:not(:placeholder-shown) + label {
       transform: translateY(-14px) scale(0.8);
+    }
+  }
+
+  .square-button {
+    background-color: white;
+    color: $blue;
+    border: solid 2px $blue;
+
+    font-size: 1.5em;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+    padding: 0 60px;
+    height: 60px;
+
+    width: 100%;
+    &:hover,
+    &:focus {
+      background-color: $blue;
+      color: $white;
+      border: none;
     }
   }
 }
