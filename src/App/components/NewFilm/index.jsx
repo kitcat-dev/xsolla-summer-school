@@ -8,9 +8,9 @@ export default class NewFilm extends Component {
     const {lang} = this.props;
 
     return (
-      <div style={{width: "100%"}}>
+      <div>
         <h1>{UI.newFilmHeader[lang]}</h1>
-        <PostForm />
+        <PostForm lang={lang}/>
       </div>
     );
   }

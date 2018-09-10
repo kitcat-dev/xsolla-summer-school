@@ -65,4 +65,61 @@ export const UI = {
     ru: 'Вернуться к списку фильмов',
     en: 'Back to film list',
   },
+
+  postForm: {
+    ruFields: {
+      film: {
+        ru: 'Название по-русски',
+        en: 'Name (RU)',
+      },
+      directorName: {
+        ru: 'Имя режиссера по-русски',
+        en: 'Director name (RU)',
+      },
+      famousPeople: {
+        ru: 'Знаменитости в кадре по-русски',
+        en: 'Stars (RU)',
+      },
+    },
+    enFields: {
+      film: {
+        ru: 'Название по-английски',
+        en: 'Name',
+      },
+      directorName: {
+        ru: 'Имя режиссера по-английски',
+        en: 'Director name',
+      },
+      famousPeople: {
+        ru: 'Знаменитости в кадре по-английски',
+        en: 'Stars',
+      },
+    },
+    commonFields: {
+      releaseDate: {
+        ru: 'Название по-английски',
+        en: 'Name',
+      },
+      watchingDate: {
+        ru: 'Имя режиссера по-английски',
+        en: 'Director name',
+      },
+      imdbID: {
+        ru: 'Знаменитости в кадре по-английски',
+        en: 'Stars',
+      },
+      kpID: {
+        ru: 'Идентификатор фильма на Кинопоиске',
+        en: 'ID on Kinopoisk',
+      },
+      imdbID: {
+        ru: 'Идентификатор фильма на IMDb',
+        en: 'ID on IMDb',
+      },
+      trailerYoutubeID: {
+        ru: 'Идентификатор трейлера на Youtube',
+        en: 'Trailer ID on Youtube',
+      },
+    },
+  },
 };

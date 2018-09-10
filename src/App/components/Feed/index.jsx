@@ -48,7 +48,7 @@ export default class Feed extends Component {
     const {lang} = this.props;
 
     return (
-      <div className="feed-wrapper">           
+      <Fragment>           
         <Favourites films={films} 
                     lang={lang}
                     setFilmId={this.setFilmId}
@@ -59,6 +59,6 @@ export default class Feed extends Component {
             lang={lang}
             selectedFilmId={selectedFilmId}/>
         }
-      </div>)
+      </Fragment>)
   }
 }

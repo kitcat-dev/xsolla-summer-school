@@ -66,7 +66,7 @@ export default class App extends Component {
             <Route
               path="/film/:id" render={(props) => <Film {...props} lang={lang}/>}
             />
-            <Route path="/newfilm" render={() => <NewFilm lang={lang} />}
+            <Route path="/newfilm" render={(props) => <NewFilm {...props} lang={lang} />}
             />
             <Route path="/editfilm/:id" render={(props) => <EditFilm {...props} lang={lang} />}
             />

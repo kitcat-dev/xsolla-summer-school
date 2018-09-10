@@ -3,7 +3,6 @@
 .form-wrap {
   width: 100%;
   height: 100%;
-  padding: 15px;
 }
 
 .film-form {
@@ -77,13 +76,6 @@
 @media (min-width: 768px) {
   .film-form {
     width: 60%;
-    margin: auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .film-form {
-    .col-1 {
-    }
+    margin: 0 auto 0 0;
   }
 }
