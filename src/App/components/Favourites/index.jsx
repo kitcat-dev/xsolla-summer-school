@@ -11,10 +11,12 @@ import './Favourites.css';
 export default class Favourites extends Component {
   getUniqueYears = films => {
     let watchingYears = films.map(film => {
-      return Number(film.watchingDate.split(',')[0]);
+      return this.getWatchingYear(film.watchingDate);
     });
     return [...new Set(watchingYears)];
   };
+
+  getWatchingYear = (date) => new Date(date).getFullYear();
 
   render() {
     const { films, lang, selectedFilmId } = this.props;
@@ -39,7 +41,7 @@ export default class Favourites extends Component {
                     <h2 key={year} className="year">{year}</h2>
                     {films.map(film => {
                       {
-                        if (Number(film.watchingDate.split(',')[0]) === year) {
+                        if (this.getWatchingYear(film.watchingDate) === year) {
                           return <FilmElem
                             film={film}
                             lang={lang}
@@ -52,14 +54,6 @@ export default class Favourites extends Component {
                   </Fragment>
                 );
               })}
-
-              {/* {films.map(film => (
-                  <FilmElem film={film}
-                            lang={lang}
-                            key={film.id}
-                            selectedFilmId={selectedFilmId}/>
-                  ))
-                } */}
             </ul>
           </div>
         ) : (

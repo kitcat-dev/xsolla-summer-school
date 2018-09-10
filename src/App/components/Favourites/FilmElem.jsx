@@ -26,6 +26,7 @@ export default class FilmElem extends Component {
       'fav-item-wrapper': true,
       'fav-item-wrapper--selected': this.state.isSelected,
     });
+    const releaseYear = new Date(film.releaseDate).getFullYear();
 
     // На мобильных устройствах клик по фильму откроет новую страницу с детальной информацией о нем
     let path = {};
@@ -49,7 +50,7 @@ export default class FilmElem extends Component {
             )}
             <div className="film-name">{film.name[lang]}</div>
             <span className="release-year">
-              {film.releaseDate.split(',')[0]}
+              {releaseYear}
             </span>
           </li>
         </Link>
