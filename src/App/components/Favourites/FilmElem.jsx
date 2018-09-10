@@ -5,36 +5,20 @@ import classNames from 'classnames';
 import './Favourites.css';
 
 export default class FilmElem extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    selectedFilmId: null,
+    isSelected: false
+  };
 
-    this.state = {
-      isSelected: this.props.selectedFilmId === this.props.film.id,
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedFilmId !== this.props.selectedFilmId) {
-      this.setState({
-        isSelected: nextProps.selectedFilmId === nextProps.film.id,
-      });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.selectedFilmId !== nextProps.selectedFilmId) {
+      return {
+        selectedFilmId: nextProps.selectedFilmId,
+        isSelected: nextProps.selectedFilmId === nextProps.film.id
+      }
     }
+    return null;
   }
-
-  // state = {
-  //   selectedFilmId: null,
-  //   isSelected: false
-  // };
-
-  // static getDerivedStateFromProps(nextProps, prevState) {
-  //   if (prevState.selectedFilmId !== nextProps.selectedFilmId) {
-  //     return {
-  //       selectedFilmId: nextProps.selectedFilmId,
-  //       isSelected: nextProps.selectedFilmId === nextProps.film.id
-  //     }
-  //   }
-  //   return null;
-  // }
 
   render() {
     const { film, lang } = this.props;
@@ -43,13 +27,22 @@ export default class FilmElem extends Component {
       'fav-item-wrapper--selected': this.state.isSelected,
     });
 
+    // На мобильных устройствах клик по фильму откроет новую страницу с детальной информацией о нем
+    let path = {};
+    if (document.body.clientWidth <= 768) path={
+      pathname: '/film/' + film.id,
+    }
+    else path = {
+      pathname: '/',
+      search: `?id=${film.id}`,
+    }
+
+    console.log(path);
+
     return (
       <div className={itemClass}>
-        <Link
-          to={{
-            pathname: '/',
-            search: `?id=${film.id}`,
-          }}
+        <Link 
+          to={path}
         >
           <li className="fav-item">
             {film.isFavourite && (

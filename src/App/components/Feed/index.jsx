@@ -19,7 +19,8 @@ export default class Feed extends Component {
     this.getFilms();
 
     const params = new URLSearchParams(this.props.location.search);
-    this.setState({ selectedFilmId: Number(params.get('id')) });    
+    const selectedFilmId = Number(params.get('id'));
+    !!selectedFilmId && this.setState({ selectedFilmId: Number(params.get('id')) });    
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,9 +36,7 @@ export default class Feed extends Component {
       .then(resp => resp.json())
       .then(data => {
         let films = data;
-        films.sort((a, b) => (new Date(b.watchingDate) - new Date(a.watchingDate)));
-
-         
+        films.sort((a, b) => (new Date(b.watchingDate) - new Date(a.watchingDate)));         
 
         this.setState({ films, matchIDs: this.getMatchIDs(films) });
       });
