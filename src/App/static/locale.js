@@ -15,11 +15,11 @@ export const UI = {
   },
   newFilmHeader: {
     ru: 'Новый фильм',
-    en: 'Albert Abdulmanov, 2018',
+    en: 'New film',
   },
   editFilmHeader: {
     ru: 'Редактировать фильм',
-    en: 'Albert Abdulmanov, 2018',
+    en: 'Edit film',
   },
   director: {
     ru: 'Режиссер',

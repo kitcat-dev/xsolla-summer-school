@@ -1,9 +1,7 @@
-import React from 'react';
-import {Component, Fragment} from "react";
+import React, {Component, Fragment} from 'react';
 
 import CommonInfo from './../DetailedInfo/CommonInfo';
 import MyOpinion from './../DetailedInfo/MyOpinion';
-import { UI } from "./../../static/locale";
 
 import './Film.css';
 

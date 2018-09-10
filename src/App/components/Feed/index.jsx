@@ -1,5 +1,4 @@
-import React from "react";
-import {Component, Fragment} from "react";
+import React, {Component, Fragment} from "react";
 
 import Favourites from "./../Favourites/"
 import DetailedInfo from "./../DetailedInfo/"
@@ -49,7 +48,7 @@ export default class Feed extends Component {
     const {lang} = this.props;
 
     return (
-      <Fragment>           
+      <div className="feed-wrapper">           
         <Favourites films={films} 
                     lang={lang}
                     setFilmId={this.setFilmId}
@@ -60,6 +59,6 @@ export default class Feed extends Component {
             lang={lang}
             selectedFilmId={selectedFilmId}/>
         }
-      </Fragment>)
+      </div>)
   }
 }

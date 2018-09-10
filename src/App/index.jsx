@@ -1,5 +1,4 @@
-import React from "react";
-import {Component, Fragment} from "react";
+import React, {Component, Fragment} from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Feed from "./components/Feed/";

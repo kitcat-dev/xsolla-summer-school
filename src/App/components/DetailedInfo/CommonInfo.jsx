@@ -1,9 +1,8 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { PulseLoader } from 'halogenium';
 
 import { UI } from '../../static/locale';
-import {White} from '../../static/colorVariables';
+import { White } from '../../static/colorVariables';
 
 import './DetailedInfo.css';
 
@@ -11,7 +10,9 @@ export default class CommonInfo extends Component {
   render() {
     const { film, lang } = this.props;
 
-    const releaseDate = this.props.film ? new Date(this.props.film.releaseDate) : '1 jun';
+    const releaseDate = this.props.film
+      ? new Date(this.props.film.releaseDate)
+      : '1 jun';
     const dateOptions = {
       year: 'numeric',
       month: 'long',

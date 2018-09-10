@@ -43,8 +43,7 @@ a {
 }
 
 .page-main {
-  margin: 7vh 6%;
-  width: 88%;
+  margin: 0;
   flex: 1 0 auto;
 }
 
