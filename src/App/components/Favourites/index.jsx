@@ -1,45 +1,70 @@
-import React, {Component} from "react";
-import {PulseLoader} from 'halogenium';
+import React, { Component, Fragment } from 'react';
+import { PulseLoader } from 'halogenium';
 
-import FilmElem from "./FilmElem"
+import FilmElem from './FilmElem';
 
-import { UI } from "../../static/locale";
+import { UI } from '../../static/locale';
 import { Black } from '../../static/colorVariables';
 
-import "./Favourites.css";
+import './Favourites.css';
 
 export default class Favourites extends Component {
+  getUniqueYears = films => {
+    let watchingYears = films.map(film => {
+      return Number(film.watchingDate.split(',')[0]);
+    });
+    return [...new Set(watchingYears)];
+  };
+
   render() {
-    const {films, lang, selectedFilmId} = this.props;
-    
+    const { films, lang, selectedFilmId } = this.props;
+    const watchingYears = this.getUniqueYears(films);
+
     return (
-      <main className="favourites">      
+      <main className="favourites">
         <header className="fav-header">
-          <span className="fav-title">{UI.feedHeaderILIKE[lang]} <span className="fav-art">{UI.feedHeaderWHAT[lang]}</span></span>
+          <span className="fav-title">
+            {UI.feedHeaderILIKE[lang]}{' '}
+            <span className="fav-art">{UI.feedHeaderWHAT[lang]}</span>
+          </span>
         </header>
 
         <div className="fav-description">{UI.feedDescription[lang]}</div>
-        {!!films.length ? 
-          ( <div className="fav-list">
-              <ul className="fav-groups">
-                {films.map(film => {
-                  const releaseYear = film.releaseDate.split(',')[0];
-                  return <h2 key={releaseYear} className="year">{releaseYear}</h2>
-                })}
-                
-                {films.map(film => (
+        {!!films.length ? (
+          <div className="fav-list">
+            <ul className="fav-groups">
+              {watchingYears.map(year => {
+                return (
+                  <Fragment key={year}>
+                    <h2 key={year} className="year">{year}</h2>
+                    {films.map(film => {
+                      {
+                        if (Number(film.watchingDate.split(',')[0]) === year) {
+                          return <FilmElem
+                            film={film}
+                            lang={lang}
+                            key={film.id}
+                            selectedFilmId={selectedFilmId}
+                          />
+                        }
+                      }
+                    })}
+                  </Fragment>
+                );
+              })}
+
+              {/* {films.map(film => (
                   <FilmElem film={film}
                             lang={lang}
                             key={film.id}
                             selectedFilmId={selectedFilmId}/>
                   ))
-                }
-              </ul>
-          </div> )
-        :
-        <PulseLoader color={Black} size="16px" margin="4px" />          
-        }
-          
+                } */}
+            </ul>
+          </div>
+        ) : (
+          <PulseLoader color={Black} size="16px" margin="4px" />
+        )}
       </main>
     );
   }

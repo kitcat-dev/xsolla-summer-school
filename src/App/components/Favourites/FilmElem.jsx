@@ -36,9 +36,6 @@ export default class FilmElem extends Component {
       pathname: '/',
       search: `?id=${film.id}`,
     }
-
-    console.log(path);
-
     return (
       <div className={itemClass}>
         <Link 
