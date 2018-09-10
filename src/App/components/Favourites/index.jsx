@@ -9,18 +9,8 @@ import { Black } from '../../static/colorVariables';
 import "./Favourites.css";
 
 export default class Favourites extends Component {
-
   render() {
     const {films, lang, selectedFilmId} = this.props;
-    
-    films.sort((a, b) => (new Date(b.watchingDate) - new Date(a.watchingDate)));
-
-    // Так как фильмы сортируются по дате выхода, ID фильма в массиве не соответствует ID фильма из свойств (из бд)
-    // Поэтому строим таблицу соответствия и передаем ее в FindElem как свойство
-    let matchIDs = {};
-    films.forEach((film, i) => {
-      matchIDs[i] = film.id;
-    });    
     
     return (
       <main className="favourites">      
@@ -40,10 +30,8 @@ export default class Favourites extends Component {
                 {films.map(film => (
                   <FilmElem film={film}
                             lang={lang}
-                            setFilmId={this.props.setFilmId}
                             key={film.id}
-                            selectedFilmId={selectedFilmId}
-                            matchIDs={matchIDs}/>
+                            selectedFilmId={selectedFilmId}/>
                   ))
                 }
               </ul>

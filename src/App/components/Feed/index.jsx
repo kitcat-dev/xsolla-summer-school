@@ -10,6 +10,7 @@ export default class Feed extends Component {
     super(props);
     this.state = {
       films: [],
+      matchIDs: {},
       selectedFilmId: null,
     };
   }
@@ -18,21 +19,15 @@ export default class Feed extends Component {
     this.getFilms();
 
     const params = new URLSearchParams(this.props.location.search);
-    this.setState({ selectedFilmId: Number(params.get('id')) });
-    
+    this.setState({ selectedFilmId: Number(params.get('id')) });    
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log(`this.state ${this.state.selectedFilmId}`);
-  //   console.log(`next.state ${nextState.selectedFilmId}`);
-  //   return !!(this.state.selectedFilmId !== nextState.selectedFilmId || this.state.selectedFilmId === null || nextState.selectedFilmId === null);
-  // }
-
-  setFilmId = filmId => {
-    this.setState({
-      selectedFilmId: this.state.selectedFilmId === filmId ? null : filmId,
-    });
-  };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.search !== this.props.location.search) {
+      const params = new URLSearchParams(nextProps.location.search)
+      this.setState({ selectedFilmId: Number(params.get('id')) });
+    }
+  }  
 
   getFilms = () => {
     const url = 'https://xsolla-ss-films-api.herokuapp.com/films';
@@ -40,13 +35,26 @@ export default class Feed extends Component {
       .then(resp => resp.json())
       .then(data => {
         let films = data;
-        // films.sort((a, b) => (new Date(b.watchingDate) - new Date(a.watchingDate)));
-        this.setState({ films });
+        films.sort((a, b) => (new Date(b.watchingDate) - new Date(a.watchingDate)));
+
+         
+
+        this.setState({ films, matchIDs: this.getMatchIDs(films) });
       });
   };
 
+  // Так как фильмы сортируются по дате выхода, ID фильма в массиве не соответствует ID фильма из свойств (из бд)
+  // Поэтому строим таблицу соответствия
+  getMatchIDs = (films) => {
+    let matchIDs = {};
+    films.forEach((film, i) => {
+      matchIDs[i] = film.id;
+    });
+    return matchIDs;
+  }
+
   render() {
-    const { films, selectedFilmId } = this.state;
+    const { films, selectedFilmId, matchIDs } = this.state;
     const { lang } = this.props;
 
     return (
@@ -54,13 +62,13 @@ export default class Feed extends Component {
         <Favourites
           films={films}
           lang={lang}
-          setFilmId={this.setFilmId}
+          setMatchIDs={this.setMatchIDs}
           selectedFilmId={selectedFilmId}
         />
         {selectedFilmId !== null &&
           !!films.length && (
             <DetailedInfo
-              film={films[selectedFilmId]}
+              film={films[matchIDs[selectedFilmId]]}
               lang={lang}
               selectedFilmId={selectedFilmId}
             />
