@@ -9,30 +9,32 @@ import './PostForm.css';
 export default class PostForm extends Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.setFormApi = this.setFormApi.bind(this);
 
     this.state = {};
   }
 
-  handleClick = () => {
+  handleSubmit = () => {
     event.preventDefault();    
     const data = this.formApi.getState().values;
 
-    fetch('https://xsolla-ss-films-api.herokuapp.com/films', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data),
-    })
-    .then(response => {
-      console.log('Response status: ' + response.status);
-      console.log('Response status text: ' + response.statusText);
-      console.log('Response url: ' + response.url);
-    }, error => {
-      console.log('Error message: ' + error.message); //=> String
-    })
+    console.log(data);
+
+    // fetch('https://xsolla-ss-films-api.herokuapp.com/films', {
+    //   method: 'POST',
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    // .then(response => {
+    //   console.log('Response status: ' + response.status);
+    //   console.log('Response status text: ' + response.statusText);
+    //   console.log('Response url: ' + response.url);
+    // }, error => {
+    //   console.log('Error message: ' + error.message);
+    // })
   }
 
   setFormApi(formApi) {
@@ -132,7 +134,7 @@ export default class PostForm extends Component {
               </div>
               
 
-              <button type="submit" className="square-button" onClick={this.handleClick}>
+              <button type="submit" className="square-button" onClick={this.handleSubmit}>
                 {UI.postForm.commonFields.addFilmButton[lang]}
               </button>
             </Fragment>

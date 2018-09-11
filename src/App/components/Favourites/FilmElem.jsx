@@ -22,10 +22,11 @@ export default class FilmElem extends Component {
 
   handleRemove = (event) => {
     event.preventDefault();
-    fetch(`https://xsolla-ss-films-api.herokuapp.com/films/${this.props.film.id}`, {
-      method: 'DELETE',
-    })
-    .then((response) => open('/', '_self'));
+    console.log('remove');
+    // fetch(`https://xsolla-ss-films-api.herokuapp.com/films/${this.props.film.id}`, {
+    //   method: 'DELETE',
+    // })
+    // .then((response) => open('/', '_self'));
   }
 
   handleEdit = (event) => {

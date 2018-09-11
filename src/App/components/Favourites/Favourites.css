@@ -47,6 +47,10 @@
       top: 10px;
       transform: scale(0);
       transition: all 0.3s ease;
+
+      @media (max-width: 768px) {
+        transform: scale(0.8);
+      }
     }
 
     .cross {
@@ -63,16 +67,14 @@
       .miniButton {
         transform: scale(1);
       }
-
-      @media (max-width: 768px) {
-        .miniButton {
-          display: none;
-        }
-      }
     }
 
     .film-name {
       color: $black;
+      @media (max-width: 768px) {
+        font-size: 0.8em;
+        width: 70%;
+      }
     }
 
     .release-year {
@@ -119,7 +121,7 @@
     position: relative;
     transition: 0.5s;
 
-    &:after {      
+    &:after {
       content: '»';
       position: absolute;
       opacity: 0;
