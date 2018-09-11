@@ -28,6 +28,11 @@ export default class FilmElem extends Component {
     .then((response) => open('/', '_self'));
   }
 
+  handleEdit = (event) => {
+    event.preventDefault();
+    // Тут вызвать Form с параметрами фильма
+  }
+
   render() {
     const { film, lang } = this.props;
     const itemClass = classNames({
@@ -38,7 +43,9 @@ export default class FilmElem extends Component {
     const heartSVG = (<svg className="heart" viewBox="0 0 512 512">
         <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
     </svg>);
-    const crossPNG = <img onClick={this.handleRemove} className="cross" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFQSURBVEhL7ZXNSsNAFIXzJPoQkqALFzZFEFzoQhR0Ib6d4EZc2QpW7bJYETf+vIHgptMBaeM493pHMnOmkUTd9cAhkDn3O5kJJMlctaTXVhZVK+uOWtm7yjNTxzxjZ3V7aUFwKBu4iA3Xsi0RHKrJk4cmhuBQsQHVXsZ7P1hwqDCoj/ZMMRgYfbDt3SePt9bN5OyUr+Ga4FBhkADm9c18PD57JQQtboe8RpnyDFlwqDCoNlbNtHfplZThdP3VDtjlkqcXU9w/VMLJgkPFwmwq6fcZzHBbMgtOFhwqFibzsQzvvgtoJ3ofX7yz4FCxsHfmtsTthN/JjBLBocKgB3dnTsd11assERwqDDoQvNBSyfTm2pshCw4VBvXhDoM8uLMtmZwcm/HuJqwJDhUGm1pwqP//2P3B53qUp+eCQ9HPQuVpp8lOvmbSTuUPZy5UknwC8OdJutVjjxEAAAAASUVORK5CYII=" />;
+    
+    const removeMiniButton = <svg onClick={this.handleRemove} xmlns="http://www.w3.org/2000/svg" className="miniButton cross" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg>
+    const editMiniButton = <svg onClick={this.handleEdit} xmlns="http://www.w3.org/2000/svg" className="miniButton pencil" viewBox="0 0 24 24"><path d="M18.311 2.828l2.861 2.861-15.033 15.032-2.859-2.862 15.031-15.031zm0-2.828l-16.873 16.872-1.438 7.127 7.127-1.437 16.873-16.873-5.689-5.689z"/></svg>
 
     // На мобильных устройствах клик по фильму откроет новую страницу с детальной информацией о нем
     let path = {};
@@ -56,7 +63,8 @@ export default class FilmElem extends Component {
         >
           <li className="fav-item">
             {film.isFavourite && heartSVG }
-            {crossPNG}
+            {removeMiniButton}
+            {editMiniButton}
             <div className="film-name">{film.name[lang]}</div>
             <span className="release-year">
               {releaseYear}

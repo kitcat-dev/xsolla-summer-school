@@ -6,3 +6,7 @@ export const White = '#fff';
 export const Darkgrey = '#2A2A2A';
 export const Middlegrey = '#B1B1B1';
 export const Black = '#000';
+
+// minibuttons
+export const Red = '#C70039';
+export const Yellow = '#FFC300';

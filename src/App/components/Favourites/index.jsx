@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { PulseLoader } from 'halogenium';
 
 import FilmElem from './FilmElem';
+import AddFilmButton from './AddFilmButton';
 
 import { UI } from '../../static/locale';
 import { Black } from '../../static/colorVariables';
@@ -16,7 +17,7 @@ export default class Favourites extends Component {
     return [...new Set(watchingYears)];
   };
 
-  getWatchingYear = (date) => new Date(date).getFullYear();
+  getWatchingYear = date => new Date(date).getFullYear();
 
   render() {
     const { films, lang, selectedFilmId } = this.props;
@@ -38,16 +39,20 @@ export default class Favourites extends Component {
               {watchingYears.map(year => {
                 return (
                   <Fragment key={year}>
-                    <h2 key={year} className="year">{year}</h2>
+                    <h2 key={year} className="year">
+                      {year}
+                    </h2>
                     {films.map(film => {
                       {
                         if (this.getWatchingYear(film.watchingDate) === year) {
-                          return <FilmElem
-                            film={film}
-                            lang={lang}
-                            key={film.id}
-                            selectedFilmId={selectedFilmId}
-                          />
+                          return (
+                            <FilmElem
+                              film={film}
+                              lang={lang}
+                              key={film.id}
+                              selectedFilmId={selectedFilmId}
+                            />
+                          );
                         }
                       }
                     })}
@@ -59,6 +64,7 @@ export default class Favourites extends Component {
         ) : (
           <PulseLoader color={Black} size="16px" margin="4px" />
         )}
+        <AddFilmButton lang={lang}/>
       </main>
     );
   }

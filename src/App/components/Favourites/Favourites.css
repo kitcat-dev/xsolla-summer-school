@@ -40,21 +40,32 @@
       top: 7px;
     }
 
-    .cross {
+    .miniButton {
       position: absolute;
-      right: 36px;
-      top: 7px;
+      width: 20px;
+      height: 20px;
+      top: 10px;
       transform: scale(0);
       transition: all 0.3s ease;
     }
 
+    .cross {
+      fill: $red;
+      right: 2em;
+    }
+
+    .pencil {
+      fill: $yellow;
+      right: 4em;
+    }
+
     &:hover {
-      .cross {
+      .miniButton {
         transform: scale(1);
       }
 
       @media (max-width: 768px) {
-        .cross {
+        .miniButton {
           display: none;
         }
       }
@@ -87,6 +98,43 @@
           fill: $white;
         }
       }
+    }
+  }
+}
+
+.add-button {
+  margin-top: 1em;
+  border-radius: 10px;
+  background-color: $lightblue;
+  border: none;
+  padding: 10px 15px;
+  transition: all 0.5s;
+
+  span {
+    height: 100%;
+    color: $blue;
+    font-size: 0.8em;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+
+    &:after {      
+      content: '»';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+  }
+
+  &:hover span {
+    padding-right: 1em;
+
+    &:after {
+      opacity: 1;
+      right: 0;
     }
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Form } from 'informed';
+import { Form, Checkbox } from 'informed';
 
 import { UI } from '../../static/locale';
 import InputBlock from './InputBlock';
@@ -123,6 +123,15 @@ export default class PostForm extends Component {
                 id="trailerYoutubeID"
                 label={UI.postForm.commonFields.trailerYoutubeID[lang]}
               />
+
+              <div className="col-2 input-checkbox">
+                <label htmlFor="checkbox-isFavourite">
+                  {UI.postForm.commonFields.isFavourite[lang]}
+                  <Checkbox field="isFavourite" id="checkbox-isFavourite" />                  
+                </label>
+              </div>
+              
+
               <button type="submit" className="square-button" onClick={this.handleClick}>
                 {UI.postForm.commonFields.addFilmButton[lang]}
               </button>

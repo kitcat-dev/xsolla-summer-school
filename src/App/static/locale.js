@@ -136,6 +136,14 @@ export const UI = {
         ru: 'Добавить фильм',
         en: 'Add film',
       },
+      editFilmButton: {
+        ru: 'Отредактировать фильм',
+        en: 'Edit film',
+      },
+      isFavourite: {
+        ru: 'Можно назвать этот фильм вашим любимым?',
+        en: 'Is it one of your favourite films?',
+      },
     },
   },
 };
