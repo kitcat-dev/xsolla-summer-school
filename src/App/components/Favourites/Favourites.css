@@ -139,4 +139,11 @@
       right: 0;
     }
   }
+
+  @media (max-height:768px) {
+    .add-button {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 }

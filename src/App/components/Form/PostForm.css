@@ -41,7 +41,7 @@
       position: relative;
       
       top: -0.1rem;      
-      margin: 0 0 0 1rem;
+      margin: 0 0 0 0.8rem;
       line-height: 135%;   
       cursor: pointer;
 
@@ -82,14 +82,6 @@
     display: inline-block;
     position: relative;
 
-    input {
-      width: 100%;
-      height: 46px;
-      border: 0px;
-      border-bottom: 1px solid $middlegrey;
-      transition: border-bottom, box-shadow 0.25s ease-in-out;
-    }
-
     label {
       position: absolute;
       top: 0;
@@ -99,6 +91,14 @@
       transform: translateY(14px);
       transition: transform 0.25s ease-in-out;
       transform-origin: 0% 100%;
+    }
+
+    input {
+      width: 100%;
+      height: 46px;
+      border: 0px;
+      border-bottom: 1px solid $middlegrey;
+      transition: border-bottom, box-shadow 0.25s ease-in-out;
     }
 
     input:focus {

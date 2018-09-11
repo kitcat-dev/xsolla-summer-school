@@ -41,8 +41,8 @@ export default class App extends Component {
                 <div className="rc-switch-wrapper">
                   <LangSwitcher
                     onChange={this.switchLanguage}
-                    checkedChildren={'En'}
-                    unCheckedChildren={'Ru'}
+                    checkedChildren={this.state.lang}
+                    unCheckedChildren={this.state.lang === 'ru' ? 'en' : 'ru'}
                   />
                 </div>
               )}
@@ -53,8 +53,8 @@ export default class App extends Component {
                   <MyLink path="/" message={UI.backToFeedMessage[lang]} />
                   <LangSwitcher
                     onChange={this.switchLanguage}
-                    checkedChildren={'En'}
-                    unCheckedChildren={'Ru'}
+                    checkedChildren={this.state.lang}
+                    unCheckedChildren={this.state.lang === 'ru' ? 'en' : 'ru'}
                   />
                 </Fragment>
               )}
