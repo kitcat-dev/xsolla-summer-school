@@ -1,4 +1,4 @@
-@import "../../static/variables.css";
+@import '../../static/variables.css';
 
 .fav-header {
   display: flex;
@@ -28,8 +28,6 @@
     margin-bottom: 20px;
   }
 
-  
-
   .fav-item {
     margin-left: 40px;
     position: relative;
@@ -42,6 +40,26 @@
       top: 7px;
     }
 
+    .cross {
+      position: absolute;
+      right: 36px;
+      top: 7px;
+      transform: scale(0);
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      .cross {
+        transform: scale(1);
+      }
+
+      @media (max-width: 768px) {
+        .cross {
+          display: none;
+        }
+      }
+    }
+
     .film-name {
       color: $black;
     }
@@ -50,7 +68,7 @@
       font-size: 0.8rem;
       color: $middlegrey;
     }
-    
+
     &-wrapper {
       padding: 5px;
       margin-bottom: 5px;

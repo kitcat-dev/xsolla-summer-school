@@ -20,7 +20,7 @@ export default class Feed extends Component {
 
     const params = new URLSearchParams(this.props.location.search);
     const selectedFilmId = Number(params.get('id'));
-    !!selectedFilmId && this.setState({ selectedFilmId: Number(params.get('id')) });    
+    selectedFilmId >= 0 && this.setState({ selectedFilmId: Number(params.get('id')) });    
   }
 
   componentWillReceiveProps(nextProps) {
@@ -52,9 +52,13 @@ export default class Feed extends Component {
     return matchIDs;
   }
 
+  getKeyByValue = (object, value) => Object.keys(object).find(key => object[key] === value);
+
   render() {
     const { films, selectedFilmId, matchIDs } = this.state;
     const { lang } = this.props;
+
+    const reversedMatchID = this.getKeyByValue(matchIDs, selectedFilmId);
 
     return (
       <div className="feed-wrapper">
@@ -67,7 +71,7 @@ export default class Feed extends Component {
         {selectedFilmId !== null &&
           !!films.length && (
             <DetailedInfo
-              film={films[matchIDs[selectedFilmId]]}
+              film={films[reversedMatchID]}
               lang={lang}
               selectedFilmId={selectedFilmId}
             />
