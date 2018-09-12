@@ -12,7 +12,7 @@ export default class PostForm extends Component {
     super(props);
   }
 
-  initialValues = {
+  defaultValues = {
     releaseDate: "1921/02/09",
     watchingDate: "2000/01/01",
     imdbID: "tt0012349",
@@ -45,8 +45,16 @@ export default class PostForm extends Component {
   };
 
   onSubmit(values, { setSubmitting, setErrors }) {
-    fetch('https://xsolla-ss-films-api.herokuapp.com/films', {
-      method: 'POST',
+    console.log(values);
+
+    const filmId = !!values.id ? '/' + values.id : '';
+    const requestMethod = !!values.id ? 'PUT' : 'POST';
+
+    console.log(filmId);
+    console.log(requestMethod);
+
+    fetch(`https://xsolla-ss-films-api.herokuapp.com/films${filmId}`, {
+      method: requestMethod,
       headers: {
         "Content-Type": "application/json"
       },
@@ -55,7 +63,7 @@ export default class PostForm extends Component {
       .then(response => {
         console.log('set submitting');
         setSubmitting(false);
-        location.reload();
+        open('/', '_self');
       }, error => {
         console.log('Error message: ' + error.message);
       })
@@ -65,7 +73,7 @@ export default class PostForm extends Component {
     const { isSubmitting, values, errors, handleChange, handleSubmit } = props;
   
     return (
-      <form className='film-form'>        
+      <form className='film-form'> 
         <div className='col-1 input-block'>
           <input name="name.ru" type="text" onChange={handleChange} value={values.name.ru || ''} placeholder=" "/>
           <label htmlFor="name.ru">{UI.postForm.ruFields.film['ru']}</label>
@@ -142,10 +150,11 @@ export default class PostForm extends Component {
           <label htmlFor="trailerYoutubeID">{UI.postForm.commonFields.trailerYoutubeID['ru']}</label>
         </div>
 
-
-        <button type="submit" className="square-button" onClick={handleSubmit}>
-          { isSubmitting ? 'Loading' : UI.postForm.commonFields.addFilmButton['ru'] }          
-        </button>
+        {!!values.id ? <button type="submit" className="square-button" onClick={handleSubmit}>
+          { isSubmitting ? 'Загрузка...' : UI.postForm.commonFields.editFilmButton['ru'] }          
+        </button> : <button type="submit" className="square-button" onClick={handleSubmit}>
+          { isSubmitting ? 'Загрузка...' : UI.postForm.commonFields.addFilmButton['ru'] }          
+        </button>}
   
         <div>{errors.imdbID}</div>
         <div>{errors.kpID}</div>
@@ -154,16 +163,20 @@ export default class PostForm extends Component {
   }
 
   render() {
-    const { lang, film } = this.props;
+    const { film } = this.props;
+
+    const initialValues = !!film ? film : this.defaultValues;
+
+    console.log(initialValues);
 
     return (
       <div className="form-wrap">
-        <Formik 
-          initialValues={this.initialValues}
+        { <Formik 
+          initialValues={initialValues}
           validate={validate(getYupValidationSchema)}
           onSubmit={this.onSubmit}
           render={this.AddForm}
-        />
+        />}
       </div>
     );
   }

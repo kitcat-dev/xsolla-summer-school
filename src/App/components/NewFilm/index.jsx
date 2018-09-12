@@ -10,7 +10,7 @@ export default class NewFilm extends Component {
     return (
       <div>
         <h1>{UI.newFilmHeader[lang]}</h1>
-        <PostForm lang={lang}/>
+        <PostForm/>
       </div>
     );
   }

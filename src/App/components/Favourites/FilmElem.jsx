@@ -30,7 +30,6 @@ export default class FilmElem extends Component {
   }
 
   handleEdit = (event) => {
-    event.preventDefault();
     // Тут вызвать Form с параметрами фильма
   }
 
@@ -64,8 +63,8 @@ export default class FilmElem extends Component {
         >
           <li className="fav-item">
             {film.isFavourite && heartSVG }
-            {removeMiniButton}
-            {editMiniButton}
+            <Link to={`/editfilm/${film.id}`}>{editMiniButton}</Link>
+            {removeMiniButton}            
             <div className="film-name">{film.name[lang]}</div>
             <span className="release-year">
               {releaseYear}
