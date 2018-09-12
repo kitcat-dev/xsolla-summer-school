@@ -17,12 +17,13 @@
 1. Можно добавлять новые фильмы и изменять существующие через удобную форму.
 1. При отправке данных через форму производится валидация — пользователь может сразу изменить некорректные данные.
 1. Верстка «тянется» на мобильных устройствах, адаптируется под сенсорный ввод.
+1. Приложение локализовано на два языка. Переключение производится через свитчер
 
 ### ⚙ Для разработчиков
 
 1. **«Мне нравятся ...»** — одностраничное приложение (SPA), написанное на [Реакте](https://reactjs.org/). Для роутинга используется [React Router](https://github.com/ReactTraining/react-router). 
-1. В разработке применяется практика CI/CD: тесты прогоняются на [CircleCI](https://circleci.com/), осуществляется код ревью при помощи [Code Climate](https://codeclimate.com/). Если тесты пройдены, производится деплой продакшн-версии приложения на [Heroku](https://heroku.com).
-1. Используется [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript/) и [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+2. В разработке применяется практика CI/CD: тесты прогоняются на [CircleCI](https://circleci.com/), осуществляется код ревью при помощи [Code Climate](https://codeclimate.com/). Если тесты пройдены, производится деплой продакшн-версии приложения на [Heroku](https://heroku.com).
+3. Используется [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript/) и [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
 
 *Тут сделать крутую гифку с перелистыванием шагов Коммит → Прогон → Деплой → Приложуха*
 

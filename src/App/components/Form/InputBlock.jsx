@@ -8,7 +8,7 @@ export default class InputBlock extends Component {
     const {colAmount, id, label, field, validate, validateOnChange} = this.props;
 
     return (<div className={`col-${colAmount} input-block`}>
-        <Text field={field} type="text" id={`${id}`} validateOnChange={validateOnChange} validate={validate} placeholder=" "/>
+        <Text field={field} type="text" id={`${id}`} validate={validate} placeholder=" "/>
         <label htmlFor={`${id}`}>{label}</label>
     </div>);
   }
