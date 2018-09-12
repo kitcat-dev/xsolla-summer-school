@@ -110,7 +110,7 @@ npm start
 ## 👨‍💻 Автор
 
 [Абдульманов Альберт](https://github.com/albertmolodec)
+<a href="https://github.com/albertmolodec"><img src="https://i.imgur.com/ECT91Lf.jpg" alt="Абдульманов Альберт" width="160px"/></a>
 
-<img src="https://i.imgur.com/ECT91Lf.jpg" alt="Абдульманов Альберт" width="160px"/>
 
 Выполнено в рамках выпускной работы **[Летней школы разработки компании Xsolla](http://school.xsolla.com/)** в 2018 году 🎯
