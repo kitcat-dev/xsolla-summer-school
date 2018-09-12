@@ -72,7 +72,7 @@ export const UI = {
         ru: 'Название (🇷🇺)',
         en: 'Name (🇷🇺)',
       },
-      directorName: {
+      director: {
         ru: 'Имя режиссера (🇷🇺)',
         en: 'Director name (🇷🇺)',
       },
@@ -94,7 +94,7 @@ export const UI = {
         ru: 'Название (🇬🇧)',
         en: 'Name',
       },
-      directorName: {
+      director: {
         ru: 'Имя режиссера (🇬🇧)',
         en: 'Director name',
       },

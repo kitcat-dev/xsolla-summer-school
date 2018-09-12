@@ -1,28 +1,50 @@
 import React, { Component, Fragment } from 'react';
-import { Formik } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import validate from './validate-yup';
 import getYupValidationSchema from './getValidationSchema-yup';
 
 import { UI } from '../../static/locale';
-import InputBlock from './InputBlock';
 
 import './PostForm.css';
 
 export default class PostForm extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      language: 'ru'
-    }
   }
 
   initialValues = {
-    // nameRu: 'default name',
-    // kpID: 'default kp'
+    releaseDate: "1921/02/09",
+    watchingDate: "2000/01/01",
+    imdbID: "tt0012349",
+    kpID: "2127",
+    trailerYoutubeID: "jNQXAC9IVRw",
+    name: {
+      ru: "Малыш",
+      en: "The Kid"
+    },
+    director: {
+      ru: "Чарли Чаплин",
+      en: "Charles Chaplin"
+    },
+    famousPeople: {
+      ru: "Чарли Чаплин",
+      en: "Charles Chaplin"
+    },
+    description: {
+      ru: "Фильм «Малыш» — это история ребенка, брошенного матерью вскоре после рождения. После цепи приключений подкидыша находит житель трущоб бедный Чарли, который учит ребенка тому, что знает сам.",
+      en: "The Tramp cares for an abandoned child, but events put that relationship in jeopardy."
+    },
+    whatILikeHere: {
+      ru: [
+        "Фильм собрал 5.5 млн долларов в прокате США",
+      ],
+      en: [
+        "$5,450,000 in USA Box office",
+      ]
+    },
   };
 
-  onSubmit(values, { setSubmitting, setErrors }) {    
+  onSubmit(values, { setSubmitting, setErrors }) {
     fetch('https://xsolla-ss-films-api.herokuapp.com/films', {
       method: 'POST',
       headers: {
@@ -40,34 +62,92 @@ export default class PostForm extends Component {
   }
 
   AddForm(props) {
-    const { isSubmitting, values, errors, handleChange, handleSubmit } = props; 
-    
-    console.log(this);
+    const { isSubmitting, values, errors, handleChange, handleSubmit } = props;
   
     return (
-      <form className='film-form'>
-        {/* <InputBlock
-          colAmount={1}
-          id="nameRU"
-          field="whatILikeHere.ru"
-          label={UI.postForm.ruFields.whatILikeHere[lang]}
-        /> */}
+      <form className='film-form'>        
         <div className='col-1 input-block'>
-          <input name="nameRu" type="text" onChange={handleChange} value={values.nameRu || ''} placeholder=" "/>
-          <label htmlFor="nameRu">Имя</label>
+          <input name="name.ru" type="text" onChange={handleChange} value={values.name.ru || ''} placeholder=" "/>
+          <label htmlFor="name.ru">{UI.postForm.ruFields.film['ru']}</label>
         </div>
 
         <div className='col-1 input-block'>
-          <input name="kpID" type="text" onChange={handleChange} value={values.kpID || ''} placeholder=" "/>
-          <label htmlFor="kpID">ID кинопоиска</label>
+          <input name="name.en" type="text" onChange={handleChange} value={values.name.en || ''} placeholder=" "/>
+          <label htmlFor="name.en">{UI.postForm.enFields.film['ru']}</label>
         </div>
+
+        <div className='col-1 input-block'>
+          <input name="director.ru" type="text" onChange={handleChange} value={values.director.ru || ''} placeholder=" "/>
+          <label htmlFor="director.ru">{UI.postForm.ruFields.director['ru']}</label>
+        </div>
+
+        <div className='col-1 input-block'>
+          <input name="director.en" type="text" onChange={handleChange} value={values.director.en || ''} placeholder=" "/>
+          <label htmlFor="director.en">{UI.postForm.enFields.director['ru']}</label>
+        </div>
+
+        <div className='col-1 input-block'>
+          <input name="famousPeople.ru" type="text" onChange={handleChange} value={values.famousPeople.ru || ''} placeholder=" "/>
+          <label htmlFor="famousPeople.ru">{UI.postForm.ruFields.famousPeople['ru']}</label>
+        </div>
+
+        <div className='col-1 input-block'>
+          <input name="famousPeople.en" type="text" onChange={handleChange} value={values.famousPeople.en || ''} placeholder=" "/>
+          <label htmlFor="famousPeople.en">{UI.postForm.enFields.famousPeople['ru']}</label>
+        </div>
+
+        <div className='col-1 input-block'>
+          <input name="description.ru" type="text" onChange={handleChange} value={values.description.ru || ''} placeholder=" "/>
+          <label htmlFor="description.ru">{UI.postForm.ruFields.description['ru']}</label>
+        </div>
+
+        <div className='col-1 input-block'>
+          <input name="description.en" type="text" onChange={handleChange} value={values.description.en || ''} placeholder=" "/>
+          <label htmlFor="description.en">{UI.postForm.enFields.description['ru']}</label>
+        </div>
+
+        <div className='col-1 input-block'>
+          <input name="whatILikeHere.ru" type="text" onChange={handleChange} value={values.whatILikeHere.ru || ''} placeholder=" "/>
+          <label htmlFor="whatILikeHere.ru">{UI.postForm.ruFields.whatILikeHere['ru']}</label>
+        </div>
+
+        <div className='col-1 input-block'>
+          <input name="whatILikeHere.en" type="text" onChange={handleChange} value={values.whatILikeHere.en || ''} placeholder=" "/>
+          <label htmlFor="whatILikeHere.en">{UI.postForm.enFields.whatILikeHere['ru']}</label>
+        </div>
+
+
+        <div className='col-2 input-block'>
+          <input name="releaseDate" type="text" onChange={handleChange} value={values.releaseDate || ''} placeholder=" "/>
+          <label htmlFor="releaseDate">{UI.postForm.commonFields.releaseDate['ru']}</label>
+        </div>
+
+        <div className='col-2 input-block'>
+          <input name="watchingDate" type="text" onChange={handleChange} value={values.watchingDate || ''} placeholder=" "/>
+          <label htmlFor="watchingDate">{UI.postForm.commonFields.watchingDate['ru']}</label>
+        </div>
+
+        <div className='col-2 input-block'>
+          <input name="imdbID" type="text" onChange={handleChange} value={values.imdbID || ''} placeholder=" "/>
+          <label htmlFor="imdbID">{UI.postForm.commonFields.imdbID['ru']}</label>
+        </div>
+
+        <div className='col-2 input-block'>
+          <input name="kpID" type="text" onChange={handleChange} value={values.kpID || ''} placeholder=" "/>
+          <label htmlFor="kpID">{UI.postForm.commonFields.kpID['ru']}</label>
+        </div>
+
+        <div className='col-2 input-block'>
+          <input name="trailerYoutubeID" type="text" onChange={handleChange} value={values.trailerYoutubeID || ''} placeholder=" "/>
+          <label htmlFor="trailerYoutubeID">{UI.postForm.commonFields.trailerYoutubeID['ru']}</label>
+        </div>
+
 
         <button type="submit" className="square-button" onClick={handleSubmit}>
-          { isSubmitting ? 'Loading' : UI.postForm.commonFields.addFilmButton['ru'] }
-          
+          { isSubmitting ? 'Loading' : UI.postForm.commonFields.addFilmButton['ru'] }          
         </button>
   
-        <div>{errors.nameRu}</div>
+        <div>{errors.imdbID}</div>
         <div>{errors.kpID}</div>
       </form>
     );
@@ -117,119 +197,4 @@ export default class PostForm extends Component {
 
 
 
-  // <Form className="film-form" 
-  //             onChange={formState => console.log(formState.errors)}
-  //             onSubmit>
-  //         {({ formState }) => (
-  //           <Fragment>
-  //             {' '}
-  //             <InputBlock
-  //               colAmount="1"
-  //               id="nameRU"
-  //               field="name.ru"
-  //               label={UI.postForm.ruFields.film[lang]}
-  //               validateOnChange
-  //               validate={this.twoCharactersValidation}
-  //             />
-  //             {}
-  //             {/* <InputBlock
-  //               colAmount={1}
-  //               id="nameEN"
-  //               field="name.en"
-  //               label={UI.postForm.enFields.film[lang]}
-  //             />
-  //             <InputBlock
-  //               colAmount={1}
-  //               id="directorNameRU"
-  //               field="directorName.ru"
-  //               label={UI.postForm.ruFields.directorName[lang]}
-  //             />
-  //             <InputBlock
-  //               colAmount={1}
-  //               id="directorNameEN"
-  //               field="directorName.en"
-  //               label={UI.postForm.enFields.directorName[lang]}
-  //             />
-  //             <InputBlock
-  //               colAmount={1}
-  //               id="famousPeopleRU"
-  //               field="famousPeople.ru"
-  //               label={UI.postForm.ruFields.famousPeople[lang]}
-  //             />
-  //             <InputBlock
-  //               colAmount={1}
-  //               id="famousPeopleEN"
-  //               field="famousPeople.en"
-  //               label={UI.postForm.enFields.famousPeople[lang]}
-  //             />
-  //             <InputBlock
-  //               colAmount={1}
-  //               id="descriptionRU"
-  //               field="description.ru"
-  //               label={UI.postForm.ruFields.description[lang]}
-  //             />
-  //             <InputBlock
-  //               colAmount={1}
-  //               id="descriptionEN"
-  //               field="description.en"
-  //               label={UI.postForm.enFields.description[lang]}
-  //             />
-  //             <InputBlock
-  //               colAmount={1}
-  //               id="whatILikeHereRU"
-  //               field="whatILikeHere.ru"
-  //               label={UI.postForm.ruFields.whatILikeHere[lang]}
-  //             />
-  //             <InputBlock
-  //               colAmount={1}
-  //               id="whatILikeHereEN"
-  //               field="whatILikeHere.en"
-  //               label={UI.postForm.enFields.whatILikeHere[lang]}
-  //             />
-  //             <InputBlock
-  //               colAmount={2}
-  //               id="releaseDate"
-  //               field="releaseDate"
-  //               label={UI.postForm.commonFields.releaseDate[lang]}
-  //             />
-  //             <InputBlock
-  //               colAmount={2}
-  //               id="watchingDate"
-  //               field="watchingDate"
-  //               label={UI.postForm.commonFields.watchingDate[lang]}
-  //             />
-  //             <InputBlock
-  //               colAmount={2}
-  //               id="imdbID"
-  //               field="imdbID"
-  //               label={UI.postForm.commonFields.imdbID[lang]}
-  //             />
-  //             <InputBlock
-  //               colAmount={2}
-  //               id="kpID"
-  //               field="kpID"
-  //               label={UI.postForm.commonFields.kpID[lang]}
-  //             />
-  //             <InputBlock
-  //               colAmount={2}
-  //               id="trailerYoutubeID"
-  //               field="trailerYoutubeID"
-  //               label={UI.postForm.commonFields.trailerYoutubeID[lang]}
-  //             /> */}
-
-  //             <div className="col-2 input-checkbox">
-  //               <label htmlFor="checkbox-isFavourite">
-  //                 {UI.postForm.commonFields.isFavourite[lang]}
-  //                 <Checkbox field="isFavourite" id="checkbox-isFavourite" />                  
-  //               </label>
-  //             </div>
-              
-  //             <button type="submit" className="square-button">
-  //               {UI.postForm.commonFields.addFilmButton[lang]}
-  //             </button>
-  //             {/* <button type="submit" className="square-button" onClick={this.handleSubmit}>
-  //               {UI.postForm.commonFields.addFilmButton[lang]}
-  //             </button> */}
-  //           </Fragment>
-  //         )}
-  //       </Form>
+  

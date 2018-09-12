@@ -8,7 +8,7 @@ import {
 
 export default function getYupValidationSchema(values) {
   return Yup.object().shape({
-    nameRu: Yup.string()
+    name: Yup.string()
       // Добавить matches (regex)
       .required('Name is required.'),
     kpID: Yup.string()
