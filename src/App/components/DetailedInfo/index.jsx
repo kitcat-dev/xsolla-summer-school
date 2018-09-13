@@ -4,7 +4,6 @@ import { PulseLoader } from 'halogenium';
 import CommonInfo from './CommonInfo';
 import MyOpinion from './MyOpinion';
 import { Black } from '../../static/colorVariables';
-
 import './DetailedInfo.css';
 
 export default class DetailedInfo extends Component {

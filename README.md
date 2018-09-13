@@ -25,14 +25,14 @@
 ### ⚙ Для разработчиков
 
 1. **«Мне нравятся ...»** — одностраничное приложение (SPA), написано на [Реакте](https://reactjs.org/). Для роутинга используется [React Router](https://github.com/ReactTraining/react-router). 
-1. Чистоту кода гарантируют [ESLint](https://eslint.org/) ([Airbnb Javascript Style Guide](https://github.com/airbnb/javascript/) + [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)) и [Stylelint](https://stylelint.io/) ([Stylelint Config Recommended](https://github.com/stylelint/stylelint-config-recommended)).
-1. Стили помогает создавать [PostCSS](https://postcss.org/): 
+1. [ESLint](https://eslint.org/) ([Airbnb Javascript Style Guide](https://github.com/airbnb/javascript/) + [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)) и [Stylelint](https://stylelint.io/) ([Stylelint Config Recommended](https://github.com/stylelint/stylelint-config-recommended)) гарантируют чистоту кода.
+1. [PostCSS](https://postcss.org/) помогает создавать стили: 
     - [postcss-nested](https://github.com/postcss/postcss-nested) — вложенность
     - [postcss-simple-vars](https://github.com/postcss/postcss-simple-vars) — переменные
 1. С помощью [Formik](https://jaredpalmer.com/formik) создается форма добавления или редактирования фильма, поля которой удобно проверять с помощью встроенных функций [Yup](https://github.com/jquense/yup#stringmatchesregex-regex-message-string-schema)'а и регулярных выражений.
 1. В разработке применяется практика CI/CD: тесты прогоняются на [CircleCI](https://circleci.com/), осуществляется код ревью при помощи [Code Climate](https://codeclimate.com/). Если тесты пройдены, производится деплой продакшн-версии приложения на [Heroku](https://heroku.com).
 
-*Тут сделать крутую гифку с перелистыванием шагов Коммит → Прогон → Деплой → Приложуха*
+> *Тут сделать крутую гифку с перелистыванием шагов Коммит → Прогон → Деплой → Приложуха*
 
 ---
 ## 📑 Доступные страницы

@@ -3,10 +3,8 @@ import { PulseLoader } from 'halogenium';
 
 import FilmElem from './FilmElem';
 import AddFilmButton from './AddFilmButton';
-
 import UI from '../../static/locale';
 import { Black } from '../../static/colorVariables';
-
 import './Favourites.css';
 
 export default class Favourites extends Component {
