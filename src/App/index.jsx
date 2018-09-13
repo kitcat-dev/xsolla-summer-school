@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Feed from './components/Feed/';
-import NewFilm from './components/NewFilm/';
-import EditFilm from './components/EditFilm/';
+import NewFilm from './components/Form/NewFilm';
+import EditFilm from './components/Form/EditFilm';
 import Film from './components/Film/';
 import Page404 from './components/Page404/';
 import LangSwitcher from './components/LangSwitcher/';

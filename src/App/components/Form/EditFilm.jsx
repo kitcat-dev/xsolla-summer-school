@@ -1,7 +1,9 @@
 import React, {Component} from "react";
+import { ClipLoader } from 'halogenium';
 
-import PostForm from "../Form/PostForm";
-import { UI } from "./../../static/locale";
+import PostForm from "./PostForm";
+import { UI } from "../../static/locale";
+import { Black } from '../../static/colorVariables';
 
 export default class EditFilm extends Component {
   constructor(props) {
@@ -27,10 +29,12 @@ export default class EditFilm extends Component {
     const {lang} = this.props;
     const {film} = this.state;
 
+    document.title = lang === 'ru' ? 'Редактировать фильм' : 'Edit film';
+
     return (
       <div>
         <h1>{UI.editFilmHeader[lang]} {film && film.name[lang]}</h1>
-        {film && <PostForm film={film}/>}
+        {film ? <PostForm film={film}/> : <ClipLoader color={Black} size="32px" margin="4px" />}
       </div>
     );
   }

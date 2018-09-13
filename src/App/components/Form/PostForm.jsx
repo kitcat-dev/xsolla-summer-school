@@ -45,13 +45,8 @@ export default class PostForm extends Component {
   };
 
   onSubmit(values, { setSubmitting, setErrors }) {
-    console.log(values);
-
     const filmId = !!values.id ? '/' + values.id : '';
     const requestMethod = !!values.id ? 'PUT' : 'POST';
-
-    console.log(filmId);
-    console.log(requestMethod);
 
     fetch(`https://xsolla-ss-films-api.herokuapp.com/films${filmId}`, {
       method: requestMethod,
@@ -61,7 +56,6 @@ export default class PostForm extends Component {
       body: JSON.stringify(values),
     })
       .then(response => {
-        console.log('set submitting');
         setSubmitting(false);
         open('/', '_self');
       }, error => {
@@ -167,8 +161,6 @@ export default class PostForm extends Component {
 
     const initialValues = !!film ? film : this.defaultValues;
 
-    console.log(initialValues);
-
     return (
       <div className="form-wrap">
         { <Formik 
@@ -181,33 +173,3 @@ export default class PostForm extends Component {
     );
   }
 }
-
-
-
-
-  // handleSubmit = () => {
-  //   // event.preventDefault();    
-  //   const data = this.formApi.getState().values;
-
-  //   // fetch('https://xsolla-ss-films-api.herokuapp.com/films', {
-  //   //   method: 'POST',
-  //   //   headers: {
-  //   //     "Content-Type": "application/json"
-  //   //   },
-  //   //   body: JSON.stringify(data),
-  //   // })
-  //   // .then(response => {
-  //   //   console.log('Response status: ' + response.status);
-  //   //   console.log('Response status text: ' + response.statusText);
-  //   //   console.log('Response url: ' + response.url);
-  //   // }, error => {
-  //   //   console.log('Error message: ' + error.message);
-  //   // })
-  // }
-
-
-
-
-
-
-  

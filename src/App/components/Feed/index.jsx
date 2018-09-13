@@ -58,6 +58,8 @@ export default class Feed extends Component {
     const { films, selectedFilmId, matchIDs } = this.state;
     const { lang } = this.props;
 
+    document.title = lang === 'ru' ? 'Мне нравятся' : 'I like';
+
     const reversedMatchID = this.getKeyByValue(matchIDs, selectedFilmId);
 
     return (

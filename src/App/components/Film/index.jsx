@@ -29,6 +29,8 @@ export default class Feed extends Component {
     const {lang} = this.props;
     const {film} = this.state;
 
+    if (film) document.title = film.name[this.props.lang];
+
     return (
       <Fragment>
         {film && (
