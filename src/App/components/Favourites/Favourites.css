@@ -17,6 +17,10 @@
 
 .fav-description {
   margin: 2em 2em 2em 0;
+
+  li {
+    margin-bottom: 1em;
+  }
 }
 
 .fav-groups {
@@ -111,6 +115,7 @@
   border: none;
   padding: 10px 15px;
   transition: all 0.5s;
+  outline: none;
 
   span {
     height: 100%;

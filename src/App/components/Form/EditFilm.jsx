@@ -34,6 +34,7 @@ export default class EditFilm extends Component {
     return (
       <div>
         <h1>{UI.editFilmHeader[lang]} {film && film.name[lang]}</h1>
+        <p>{UI.formDescription[lang]}</p>
         {film ? <PostForm film={film}/> : <ClipLoader color={Black} size="32px" margin="4px" />}
       </div>
     );

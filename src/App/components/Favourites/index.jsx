@@ -32,7 +32,14 @@ export default class Favourites extends Component {
           </span>
         </header>
 
-        <div className="fav-description">{UI.feedDescription[lang]}</div>
+        <div className="fav-description">
+          <ul>
+            {UI.feedDescription[lang].map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
         {!!films.length ? (
           <div className="fav-list">
             <ul className="fav-groups">

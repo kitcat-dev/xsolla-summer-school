@@ -118,6 +118,16 @@
     input:not(:placeholder-shown) + label {
       transform: translateY(-14px) scale(0.8);
     }
+
+    .error-message {
+      width: 100%;
+      height: 2em;
+      padding-top: 0.2em;
+      margin-right: 1em;
+      font-size: 0.8em;
+      color: red;
+    }
+
   }
 
   .square-button {
@@ -149,8 +159,8 @@
 
 @media (min-width: 768px) {
   .film-form {
-    width: 60%;
-    margin: 0 auto 0 0;
+    width: 80%;
+    margin: 4em auto 0 0;
     font-size: 0.8em;
 
     .col-1 {
