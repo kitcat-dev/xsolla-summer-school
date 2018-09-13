@@ -1,7 +1,7 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component } from 'react';
 
 import PostForm from "../Form/PostForm";
-import { UI } from "./../../static/locale";
+import UI from "./../../static/locale";
 
 export default class NewFilm extends Component {
   render() {

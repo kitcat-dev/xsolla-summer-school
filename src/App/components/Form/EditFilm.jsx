@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { ClipLoader } from 'halogenium';
 
 import PostForm from "./PostForm";
-import { UI } from "../../static/locale";
+import UI from "../../static/locale";
 import { Black } from '../../static/colorVariables';
 
 export default class EditFilm extends Component {

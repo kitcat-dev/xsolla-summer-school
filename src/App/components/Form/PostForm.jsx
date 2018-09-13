@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Formik } from 'formik';
 import validate from './validate-yup';
 import getYupValidationSchema from './getValidationSchema-yup';
 
-import { UI } from '../../static/locale';
+import UI from '../../static/locale';
 
 import './PostForm.css';
 

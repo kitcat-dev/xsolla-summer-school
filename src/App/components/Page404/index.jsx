@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import { UI } from "./../../static/locale";
+import UI from "./../../static/locale";
 
 import "./Page404.css";
 

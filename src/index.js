@@ -9,5 +9,5 @@ import './favicon.png';
 
 ReactDOM.render(
   React.createElement(BrowserRouter, null, React.createElement(App, null)),
-  document.getElementById('root')
+  document.getElementById('root'),
 );

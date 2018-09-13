@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PulseLoader } from 'halogenium';
 
-import { UI } from '../../static/locale';
+import UI from '../../static/locale';
 import { White } from '../../static/colorVariables';
 
 import './DetailedInfo.css';

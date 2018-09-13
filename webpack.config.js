@@ -1,11 +1,10 @@
-'use strict';
-
-module.exports = function(env, argv) {
+module.exports = function (env, argv) {
   const path = require('path');
   const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
   const HtmlWebpackPlugin = require('html-webpack-plugin');
   const MiniCssExtractPlugin = require('mini-css-extract-plugin');
   const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+  const StyleLintPlugin = require('stylelint-webpack-plugin');
 
   const isProduction = argv.mode === 'production';
   const isDevelopment = argv.mode === 'development';
@@ -18,7 +17,7 @@ module.exports = function(env, argv) {
     componentCssLoaders.push('clean-css-loader');
   }
 
-  let config = {
+  const config = {
     mode: argv.mode,
     entry: {
       app: './src/index.js',
@@ -78,9 +77,7 @@ module.exports = function(env, argv) {
             loader: 'url-loader',
             options: {
               limit: 100000,
-              name: isProduction
-                ? '[name].[contenthash].[ext]'
-                : '[name].[ext]',
+              name: isProduction ? '[name].[contenthash].[ext]' : '[name].[ext]',
             },
           },
         },
@@ -90,9 +87,7 @@ module.exports = function(env, argv) {
             loader: 'url-loader',
             options: {
               limit: 65000,
-              name: isProduction
-                ? '[name].[contenthash].[ext]'
-                : '[name].[ext]',
+              name: isProduction ? '[name].[contenthash].[ext]' : '[name].[ext]',
             },
           },
         },
@@ -106,6 +101,13 @@ module.exports = function(env, argv) {
       }),
       new MiniCssExtractPlugin({
         filename: isProduction ? './[name].[contenthash].css' : './[name].css',
+      }),
+      new StyleLintPlugin({
+        configFile: '.stylelintrc',
+        context: 'src',
+        files: '**/*.css',
+        failOnError: false,
+        quiet: true,
       }),
     ],
   };

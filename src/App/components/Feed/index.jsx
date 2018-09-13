@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import Favourites from './../Favourites/';
 import DetailedInfo from './../DetailedInfo/';

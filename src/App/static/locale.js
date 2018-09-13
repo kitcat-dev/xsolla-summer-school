@@ -1,4 +1,4 @@
-export const UI = {
+const UI = {
   feedHeaderILIKE: {
     ru: 'Мне нравятся',
     en: 'I like',
@@ -72,8 +72,7 @@ export const UI = {
   formDescription: {
     ru:
       'Пожалуйста, расскажите о фильме. Большинство полей обязательны, но если вы не знаете, что написать, можно поставить прочерк 🙂 С идентификаторами Кинопоиска, IMDb и Youtube лучше не ошибаться.',
-    en:
-      'Tell me about the film. If you do not know some info, just type dash :)',
+    en: 'Tell me about the film. If you do not know some info, just type dash :)',
   },
 
   postForm: {
@@ -157,3 +156,5 @@ export const UI = {
     },
   },
 };
+
+export default UI;

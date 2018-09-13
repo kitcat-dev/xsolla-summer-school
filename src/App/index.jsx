@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Feed from './components/Feed/';
+import Feed from './components/Feed';
 import NewFilm from './components/Form/NewFilm';
 import EditFilm from './components/Form/EditFilm';
-import Film from './components/Film/';
-import Page404 from './components/Page404/';
-import LangSwitcher from './components/LangSwitcher/';
-import MyLink from './components/MyLink/';
-import { UI } from './static/locale';
+import Film from './components/Film';
+import Page404 from './components/Page404';
+import LangSwitcher from './components/LangSwitcher';
+import MyLink from './components/MyLink';
+import UI from './static/locale';
 
 import './app.css';
 
@@ -22,8 +22,10 @@ export default class App extends Component {
   }
 
   switchLanguage = () => {
+    const { lang } = this.state;
+
     this.setState({
-      lang: this.state.lang === 'ru' ? 'en' : 'ru',
+      lang: lang === 'ru' ? 'en' : 'ru',
     });
   };
 
@@ -41,8 +43,8 @@ export default class App extends Component {
                 <div className="rc-switch-wrapper">
                   <LangSwitcher
                     onChange={this.switchLanguage}
-                    checkedChildren={'En'}
-                    unCheckedChildren={'Ru'}
+                    checkedChildren="En"
+                    unCheckedChildren="Ru"
                   />
                 </div>
               )}
@@ -53,8 +55,8 @@ export default class App extends Component {
                   <MyLink path="/" message={UI.backToFeedMessage[lang]} />
                   <LangSwitcher
                     onChange={this.switchLanguage}
-                    checkedChildren={'En'}
-                    unCheckedChildren={'Ru'}
+                    checkedChildren="En"
+                    unCheckedChildren="Ru"
                   />
                 </Fragment>
               )}
@@ -85,7 +87,7 @@ export default class App extends Component {
         </main>
         <footer className="page-footer">
           <a href="https://github.com/albertmolodec" className="author">
-            {UI.footerAuthor[this.state.lang]}
+            {UI.footerAuthor[lang]}
           </a>
         </footer>
       </Fragment>
