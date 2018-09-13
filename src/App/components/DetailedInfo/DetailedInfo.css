@@ -18,6 +18,14 @@
   color: $white;
   border-radius: 10px 10px 0 0;
 
+  a {
+    color: $white;
+  }
+
+  a::before {
+    background-color: $white;
+  }
+
   .film-name {
     margin-top: 0;
   }

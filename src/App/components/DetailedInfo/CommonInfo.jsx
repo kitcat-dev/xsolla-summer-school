@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MyLink from './../MyLink';
 import { PulseLoader } from 'halogenium';
 
 import UI from '../../static/locale';
@@ -23,9 +24,11 @@ export default class CommonInfo extends Component {
 
     return film ? (
       <div className="common-info">
-        <h1 className="film-name">{film.name[lang]}</h1>
+        <h1 className="film-name">
+          <MyLink path={`/film/${film.id}`} message={film.name[lang]} />
+        </h1>
         <div className="director">
-          {UI.director[lang]}:{' '}
+        {UI.director[lang]}:{' '}
           <span className="director-name">{film.director[lang]}</span>
         </div>
         <div className="stars">
