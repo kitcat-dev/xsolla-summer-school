@@ -24,6 +24,11 @@
       "stage-2"
     ]
   },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.css$": "identity-obj-proxy"
+    }
+  },
   "devDependencies": {
     "autoprefixer": "^9.1.5",
     "babel-core": "6.26.3",
@@ -37,6 +42,8 @@
     "classnames": "^2.2.6",
     "clean-css-loader": "^1.0.1",
     "css-loader": "^1.0.0",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
     "eslint": "^5.5.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
@@ -47,6 +54,7 @@
     "halogenium": "^2.2.3",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "23.5.0",
     "mini-css-extract-plugin": "^0.4.2",
     "optimize-css-assets-webpack-plugin": "^5.0.1",

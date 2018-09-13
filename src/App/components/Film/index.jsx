@@ -5,7 +5,7 @@ import MyOpinion from './../DetailedInfo/MyOpinion';
 
 import './Film.css';
 
-export default class Feed extends Component {
+export default class Film extends Component {
   constructor(props) {
     super(props);
 
