@@ -45,9 +45,7 @@ export default class PostForm extends Component {
   onSubmit(values, { setSubmitting, setErrors }) {
     const filmId = !!values.id ? '/' + values.id : '';
     const requestMethod = !!values.id ? 'PUT' : 'POST';
-
-    values.whatILikeHere.ru = values.whatILikeHere.ru + ',';
-    values.whatILikeHere.en = values.whatILikeHere.en + ',';
+    
     values.whatILikeHere.ru = values.whatILikeHere.ru.split(',');
     values.whatILikeHere.en = values.whatILikeHere.en.split(',');
 
